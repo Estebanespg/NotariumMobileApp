@@ -1,13 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
-import icon from './assets/ic_notarium.png';
+import icon from './assets/ic_notarium_light.png';
+import "./global.css";
 
 export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
       <Image source={icon} style={{ width: 100, height: 100 }} />
-      <Text>Notarium</Text>
+      <Text className="text-orange-600 ">Notarium</Text>
       <Pressable style={styles.button}>
         <Text style={styles.text}>Guardar</Text>
       </Pressable>
