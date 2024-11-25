@@ -2,6 +2,7 @@ import { useFonts } from 'expo-font';
 import { Sora_100Thin, Sora_200ExtraLight, Sora_300Light, Sora_400Regular, Sora_500Medium, Sora_600SemiBold, Sora_700Bold, Sora_800ExtraBold } from '@expo-google-fonts/sora';
 import { View, Text, Image, Pressable, TextInput } from 'react-native';
 import { Formik } from 'formik';
+import * as Yup from 'yup';
 import icon from '../assets/ic_notarium_light_white.png';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 
@@ -20,6 +21,18 @@ export function SignIn() {
   if (!fontsLoaded) {
     return <Text>Cargando fuentes...</Text>;
   }
+
+  // VALIDATION
+  const SignupSchema = Yup.object().shape({
+    user: Yup.string()
+      .min(2, 'Muy corto!')
+      .max(20, 'Muy Largo!')
+      .required('Por favor ingresa tu usuario!'),
+    password: Yup.string()
+      .min(2, 'Muy corto!')
+      .max(50, 'Muy Largo!')
+      .required('Por favor ingresa tu contraseña!'),
+  });
 
   // HANDLE SIGNIN
   const handleSignIn = (values) => {
