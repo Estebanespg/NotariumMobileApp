@@ -1,10 +1,11 @@
 import { useFonts } from 'expo-font';
 import { Sora_100Thin, Sora_200ExtraLight, Sora_300Light, Sora_400Regular, Sora_500Medium, Sora_600SemiBold, Sora_700Bold, Sora_800ExtraBold } from '@expo-google-fonts/sora';
 import { View, Text, Image, Pressable, TextInput } from 'react-native';
-import { Formik } from 'formik';
+import { ErrorMessage, Formik } from 'formik';
 import * as Yup from 'yup';
 import icon from '../assets/ic_notarium_light_white.png';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
+import { Link } from 'expo-router';
 
 export function SignIn() {
   const [fontsLoaded] = useFonts({
@@ -23,14 +24,10 @@ export function SignIn() {
   }
 
   // VALIDATION
-  const SignupSchema = Yup.object().shape({
+  const SignUpSchema = Yup.object().shape({
     user: Yup.string()
-      .min(2, 'Muy corto!')
-      .max(20, 'Muy Largo!')
       .required('Por favor ingresa tu usuario!'),
     password: Yup.string()
-      .min(2, 'Muy corto!')
-      .max(50, 'Muy Largo!')
       .required('Por favor ingresa tu contraseña!'),
   });
 
@@ -48,11 +45,15 @@ export function SignIn() {
       <Text style={{ fontFamily: 'Sora_700Bold' }} className="text-white text-4xl mb-12">Sign In</Text>
 
       {/* FORM */}
-      <Formik initialValues={{user: "", password: ""}} onSubmit={handleSignIn}>
-        {({ handleChange, handleBlur, handleSubmit, values }) => (
+      <Formik
+       initialValues={{user: "", password: ""}}
+       validationSchema={SignUpSchema}
+       onSubmit={handleSignIn}
+      >
+        {({ handleChange, handleBlur, handleSubmit, isValid, values }) => (
           <>
             {/* USER INPUT */}
-            <View className="flex-row items-center py-1/2 pl-4 w-full bg-[#11181d] border-2 border-slate-600 rounded-2xl px-3 mb-5">
+            <View className="flex-row items-center py-1/2 pl-4 w-full bg-[#11181d] border-2 border-slate-600 rounded-2xl px-3 mb-2">
               <FontAwesome className="mr-2" name="user" size={22} color="white" />
               <TextInput
                 style={{ fontFamily: 'Sora_400Regular' }}
@@ -64,9 +65,21 @@ export function SignIn() {
                 values={values.user}
               />
             </View>
+            <View className="flex justify-start w-full mb-6">
+              <ErrorMessage name="user">
+                {msg =>
+                  <Text
+                    style={{ fontFamily: 'Sora_700Bold' }}
+                    className="justify-start text-red-700 text-sm"
+                  >
+                    {msg}
+                  </Text>
+                }
+              </ErrorMessage>
+            </View>
 
             {/* PASSWORD INPUT */}
-            <View className="flex-row items-center py-1/2 pl-4 w-full bg-[#11181d] border-2 border-slate-600 rounded-2xl px-3 mb-10">
+            <View className="flex-row items-center py-1/2 pl-4 w-full bg-[#11181d] border-2 border-slate-600 rounded-2xl px-3 mb-2">
               <FontAwesome className="mr-2" name="lock" size={22} color="white" />
               <TextInput
                 style={{ fontFamily: 'Sora_400Regular' }}
@@ -78,12 +91,25 @@ export function SignIn() {
                 values={values.password}
               />
             </View>
+            <View className="flex justify-start w-full mb-8">
+              <ErrorMessage name="password">
+                {msg =>
+                  <Text
+                    style={{ fontFamily: 'Sora_700Bold' }}
+                    className="justify-start text-red-700 text-sm"
+                  >
+                    {msg}
+                  </Text>
+                }
+              </ErrorMessage>
+            </View>
 
             {/* BUTTON */}
             <Pressable
-              className="w-full h-14 bg-[#6440a5] border-none rounded-lg items-center justify-center mb-5"
-              onPress={handleSubmit}
+              disabled={!isValid}
+              className={`w-full h-14 ${isValid ? 'bg-[#6440a5]' : 'bg-[#8067ad]'} border-none rounded-lg items-center justify-center mb-5`}
               title="Submit"
+              onPress={handleSubmit}
             >
               <Text style={{ fontFamily: 'Sora_500Medium' }} className="color-white text-lg">Iniciar Sesión</Text>
             </Pressable>
@@ -92,7 +118,7 @@ export function SignIn() {
       </Formik>
 
       {/* TEXT */}
-      <Text style={{ fontFamily: 'Sora_500Medium' }} className="text-white font-medium">No tienes una cuenta? <Text style={{ fontFamily: 'Sora_700Bold' }} className="color-[#1E90FF]">Regístrate</Text></Text>
+      <Text style={{ fontFamily: 'Sora_500Medium' }} className="text-white font-medium">No tienes una cuenta? <Link href="/SignUp"><Text style={{ fontFamily: 'Sora_700Bold' }} className="color-[#1E90FF]">Regístrate</Text></Link></Text>
 
       {/* TEXT */}
       <Text style={{ fontFamily: 'Sora_600SemiBold' }} className="absolute bottom-2.5 left-0 right-0 text-center color-white tracking-wide">Notarium</Text>

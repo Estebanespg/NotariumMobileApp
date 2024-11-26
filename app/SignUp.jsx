@@ -5,8 +5,9 @@ import { ErrorMessage, Formik } from 'formik';
 import * as Yup from 'yup';
 import icon from '../assets/ic_notarium_light_white.png';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
+import { Link } from 'expo-router';
 
-export function SignUp() {
+export default function SignUp() {
   const [fontsLoaded] = useFonts({
     Sora_100Thin,
     Sora_200ExtraLight,
@@ -121,7 +122,7 @@ export function SignUp() {
       </Formik>
 
       {/* TEXT */}
-      <Text style={{ fontFamily: 'Sora_500Medium' }} className="text-white font-medium">Ya tienes una cuenta? <Text style={{ fontFamily: 'Sora_700Bold' }} className="color-[#1E90FF]">Inicia Sesión</Text></Text>
+      <Text style={{ fontFamily: 'Sora_500Medium' }} className="text-white font-medium">Ya tienes una cuenta? <Link href="/"><Text style={{ fontFamily: 'Sora_700Bold' }} className="color-[#1E90FF]">Inicia Sesión</Text></Link></Text>
 
       {/* TEXT */}
       <Text style={{ fontFamily: 'Sora_600SemiBold' }} className="absolute bottom-2.5 left-0 right-0 text-center color-white tracking-wide">Notarium</Text>
