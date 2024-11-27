@@ -5,7 +5,7 @@ import { ErrorMessage, Formik } from 'formik';
 import * as Yup from 'yup';
 import icon from '../assets/ic_notarium_light_white.png';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Link } from 'expo-router';
+import { Link, router } from 'expo-router';
 
 export function SignIn() {
   const [fontsLoaded] = useFonts({
@@ -33,6 +33,7 @@ export function SignIn() {
 
   // HANDLE SIGNIN
   const handleSignIn = (values) => {
+    router.navigate("/Menu");
     console.log(values);
   }
 
