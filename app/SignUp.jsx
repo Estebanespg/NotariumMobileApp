@@ -46,7 +46,7 @@ export default function SignUp() {
       <Image className="w-32 h-32 mb-12" source={icon} />
 
       {/* TITLE */}
-      <Text style={{ fontFamily: 'Sora_700Bold' }} className="text-white text-4xl mb-12">Sign Up</Text>
+      <Text style={{ fontFamily: 'Sora_700Bold' }} className="text-white text-4xl mb-12">Registrarse</Text>
 
       {/* FORM */}
       <Formik
@@ -57,11 +57,11 @@ export default function SignUp() {
         {({ handleChange, handleBlur, handleSubmit, isValid, values }) => (
           <>
             {/* USER INPUT */}
-            <View className="flex-row items-center py-1/2 pl-4 w-full bg-[#11181d] border-2 border-slate-600 rounded-2xl px-3 mb-2">
-              <FontAwesome className="mr-2" name="user" size={22} color="white" />
+            <View className="flex-row items-center h-14 w-full bg-[#11181d] border-2 border-slate-600 rounded-2xl px-3 mb-2">
+              <FontAwesome className="ml-1 mr-2" name="user" size={22} color="white" />
               <TextInput
                 style={{ fontFamily: 'Sora_400Regular' }}
-                className="placeholder:text-slate-600 color-white h-full text-lg"
+                className="flex-1 placeholder:text-slate-600 color-white h-full text-lg"
                 placeholder="Usuario"
                 keyboardType="default"
                 onChangeText={handleChange('user')}
@@ -83,11 +83,11 @@ export default function SignUp() {
             </View>
 
             {/* PASSWORD INPUT */}
-            <View className="flex-row items-center py-1/2 pl-4 w-full bg-[#11181d] border-2 border-slate-600 rounded-2xl px-3 mb-2">
-              <FontAwesome className="mr-2" name="lock" size={22} color="white" />
+            <View className="flex-row items-center h-14 w-full bg-[#11181d] border-2 border-slate-600 rounded-2xl px-3 mb-2">
+              <FontAwesome className="ml-1 mr-2" name="lock" size={22} color="white" />
               <TextInput
                 style={{ fontFamily: 'Sora_400Regular' }}
-                className="placeholder:text-slate-600 color-white h-full text-lg"
+                className="flex-1 placeholder:text-slate-600 color-white h-full text-lg"
                 placeholder="Contraseña"
                 secureTextEntry
                 onChangeText={handleChange('password')}

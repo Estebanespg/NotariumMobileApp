@@ -42,7 +42,7 @@ export function SignIn() {
       <Image className="w-32 h-32 mb-12" source={icon} />
 
       {/* TITLE */}
-      <Text style={{ fontFamily: 'Sora_700Bold' }} className="text-white text-4xl mb-12">Sign In</Text>
+      <Text style={{ fontFamily: 'Sora_700Bold' }} className="text-white text-4xl mb-12">Iniciar Sesión</Text>
 
       {/* FORM */}
       <Formik
@@ -53,11 +53,11 @@ export function SignIn() {
         {({ handleChange, handleBlur, handleSubmit, isValid, values }) => (
           <>
             {/* USER INPUT */}
-            <View className="flex-row items-center py-1/2 pl-4 w-full bg-[#11181d] border-2 border-slate-600 rounded-2xl px-3 mb-2">
-              <FontAwesome className="mr-2" name="user" size={22} color="white" />
+            <View className="flex-row items-center h-14 w-full bg-[#11181d] border-2 border-slate-600 rounded-2xl px-3 mb-2">
+              <FontAwesome className="ml-1 mr-2" name="user" size={22} color="white" />
               <TextInput
                 style={{ fontFamily: 'Sora_400Regular' }}
-                className="placeholder:text-slate-600 color-white h-full text-lg"
+                className="flex-1 placeholder:text-slate-600 color-white h-full text-lg"
                 placeholder="Usuario"
                 keyboardType="default"
                 onChangeText={handleChange('user')}
@@ -79,11 +79,11 @@ export function SignIn() {
             </View>
 
             {/* PASSWORD INPUT */}
-            <View className="flex-row items-center py-1/2 pl-4 w-full bg-[#11181d] border-2 border-slate-600 rounded-2xl px-3 mb-2">
-              <FontAwesome className="mr-2" name="lock" size={22} color="white" />
+            <View className="flex-row items-center h-14 w-full bg-[#11181d] border-2 border-slate-600 rounded-2xl px-3 mb-2">
+              <FontAwesome className="ml-1 mr-2" name="lock" size={22} color="white" />
               <TextInput
                 style={{ fontFamily: 'Sora_400Regular' }}
-                className="placeholder:text-slate-600 color-white h-full text-lg"
+                className="flex-1 placeholder:text-slate-600 color-white h-full text-lg"
                 placeholder="Contraseña"
                 secureTextEntry
                 onChangeText={handleChange('password')}
@@ -118,7 +118,7 @@ export function SignIn() {
       </Formik>
 
       {/* TEXT */}
-      <Text style={{ fontFamily: 'Sora_500Medium' }} className="text-white font-medium">No tienes una cuenta? <Link href="/SignUp"><Text style={{ fontFamily: 'Sora_700Bold' }} className="color-[#1E90FF]">Regístrate</Text></Link></Text>
+      <Text style={{ fontFamily: 'Sora_500Medium' }} className="text-white">No tienes una cuenta? <Link href="/SignUp"><Text style={{ fontFamily: 'Sora_700Bold' }} className="color-[#1E90FF]">Regístrate</Text></Link></Text>
 
       {/* TEXT */}
       <Text style={{ fontFamily: 'Sora_600SemiBold' }} className="absolute bottom-2.5 left-0 right-0 text-center color-white tracking-wide">Notarium</Text>
