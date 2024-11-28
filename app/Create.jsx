@@ -47,6 +47,7 @@ export default function Create() {
 
   return (
     <View>
+      {/* TITLE */}
       <View className="h-1/4 -mb-12 justify-end items-center">
         <Text style={{ fontFamily: 'Sora_700Bold' }} className="color-white text-2xl mb-16">Registrar Estudiante</Text>
       </View>
