@@ -20,12 +20,12 @@ export function Inputs({ handleChange, handleBlur, values }) {
 
   return (
     <>
-      <View className="flex-row items-center justify-between w-full mb-5">
+      <View className="flex-row items-center justify-between w-full mt-3 mb-4">
         {/* GRADE */}
-        <View className="h-14 bg-[#11181d] border-2 border-slate-600 rounded-2xl" style={{ width: '24%' }}>
+        <View className="h-14 bg-[#11181d] border-2 border-slate-600 rounded-2xl" style={{ width: '22%' }}>
           <TextInput
             style={{ fontFamily: 'Sora_400Regular' }}
-            className="text-center placeholder:text-slate-600 color-white h-full text-lg"
+            className="pl-3 placeholder:text-slate-600 color-white h-full text-lg"
             placeholder="Nota"
             keyboardType="numeric"
             onChangeText={handleChange('grade')}
@@ -34,10 +34,10 @@ export function Inputs({ handleChange, handleBlur, values }) {
           />
         </View>
         {/* PERCENTAGE */}
-        <View className="h-14 bg-[#11181d] border-2 border-slate-600 rounded-2xl" style={{ width: '29%' }}>
+        <View className="h-14 bg-[#11181d] border-2 border-slate-600 rounded-2xl" style={{ width: '27%' }}>
           <TextInput
             style={{ fontFamily: 'Sora_400Regular' }}
-            className="text-center placeholder:text-slate-600 color-white h-full text-lg"
+            className="pl-3 placeholder:text-slate-600 color-white h-full text-lg"
             placeholder="%"
             keyboardType="numeric"
             onChangeText={handleChange('percentage')}
@@ -46,10 +46,10 @@ export function Inputs({ handleChange, handleBlur, values }) {
           />
         </View>
         {/* PARAMETER */}
-        <View className="h-14 bg-[#11181d] border-2 border-slate-600 rounded-2xl" style={{ width: '43%' }}>
+        <View className="h-14 bg-[#11181d] border-2 border-slate-600 rounded-2xl" style={{ width: '47%' }}>
           <TextInput
             style={{ fontFamily: 'Sora_400Regular' }}
-            className="text-center placeholder:text-slate-600 color-white h-full text-lg"
+            className="pl-3 placeholder:text-slate-600 color-white h-full text-lg"
             placeholder="Parámetro"
             keyboardType="default"
             onChangeText={handleChange('parameter')}

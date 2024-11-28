@@ -108,7 +108,7 @@ export default function Create() {
                       value={values.subject}
                     />
                   </View>
-                  <View className="flex justify-start w-full mb-5">
+                  <View className="flex justify-start w-full mb-2">
                     <ErrorMessage name="subject">
                       {(msg) => (
                         <Text style={{ fontFamily: 'Sora_700Bold' }} className="justify-start text-red-700 text-sm">
