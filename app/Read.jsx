@@ -35,7 +35,7 @@ export default function Read() {
 
         {/* SCROLLVIEW OR THIS... */}
         {/* <View className="h-full justify-center items-center">
-          <Text style={{ fontFamily: 'Sora_400Regular' }} className="color-white text-lg">Aún no hay estudiantes...</Text>
+          <Text style={{ fontFamily: 'Sora_400Regular' }} className="color-white text-lg">Aún no hay estudiantes</Text>
         </View> */}
       </View>
 
@@ -44,7 +44,7 @@ export default function Read() {
         <Link asChild href="/Menu">
           <Pressable className="w-full h-14 bg-[#f93e3e] border-none rounded-lg items-center justify-center">
             <Text style={{ fontFamily: 'Sora_500Medium' }} className="color-white text-lg">
-              Cancelar
+              Atrás
             </Text>
           </Pressable>
         </Link>

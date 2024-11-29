@@ -377,7 +377,7 @@ export default function Create() {
                 <Link asChild href="/Menu">
                   <Pressable className="w-full h-14 bg-[#f93e3e] border-none rounded-lg items-center justify-center">
                     <Text style={{ fontFamily: 'Sora_500Medium' }} className="color-white text-lg">
-                      Cancelar
+                      Atrás
                     </Text>
                   </Pressable>
                 </Link>
