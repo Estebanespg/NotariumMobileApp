@@ -2,6 +2,7 @@ import { useFonts } from 'expo-font';
 import { Sora_100Thin, Sora_200ExtraLight, Sora_300Light, Sora_400Regular, Sora_500Medium, Sora_600SemiBold, Sora_700Bold, Sora_800ExtraBold } from '@expo-google-fonts/sora';
 import { View, Text, Pressable, ScrollView } from 'react-native';
 import { Link } from 'expo-router';
+import { Student } from '../components/Student';
 
 export default function Read() {
   const [fontsLoaded] = useFonts({
@@ -27,8 +28,15 @@ export default function Read() {
       </View>
 
       {/* TABLE */}
-      <View className="h-1/2">
+      <View className="w-full h-1/2 pt-5 pr-10 pb-10 pl-10">
+        <ScrollView>
+          <Student />
+        </ScrollView>
 
+        {/* SCROLLVIEW OR THIS... */}
+        {/* <View className="h-full justify-center items-center">
+          <Text style={{ fontFamily: 'Sora_400Regular' }} className="color-white text-lg">Aún no hay estudiantes...</Text>
+        </View> */}
       </View>
 
       {/* BUTTONS */}
