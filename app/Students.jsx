@@ -3,6 +3,7 @@ import { Sora_100Thin, Sora_200ExtraLight, Sora_300Light, Sora_400Regular, Sora_
 import { View, Text, Pressable, ScrollView } from 'react-native';
 import { Link } from 'expo-router';
 import { StudentCard } from '../components/StudentCard';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 
 export default function Students() {
   const [fontsLoaded] = useFonts({
@@ -40,16 +41,14 @@ export default function Students() {
       </View>
 
       {/* BUTTONS */}
-      <View className="w-full h-1/4 items-center">
+      <View className="w-full h-1/4 items-end">
         <Link asChild href="/Create">
-          <Pressable className="w-full h-14 bg-[#6440a5] border-none rounded-lg items-center justify-center mb-16">
-            <Text style={{ fontFamily: 'Sora_500Medium' }} className="color-white text-lg">
-              Registrar Estudiante
-            </Text>
+          <Pressable className="w-16 h-16 bg-[#6440a5] border-none rounded-full items-center justify-center mb-3">
+            <FontAwesome name="plus" size={18} color="white" />
           </Pressable>
         </Link>
         <Link asChild href="/">
-          <Pressable className="w-48 h-14 bg-[#f93e3e] border-none rounded-lg items-center justify-center">
+          <Pressable className="w-full h-14 bg-[#f93e3e] border-none rounded-lg items-center justify-center">
             <Text style={{ fontFamily: 'Sora_500Medium' }} className="color-white text-lg">
               Log Out
             </Text>
