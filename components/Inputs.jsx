@@ -30,7 +30,7 @@ export function Inputs({ handleChange, handleBlur, values }) {
             keyboardType="numeric"
             onChangeText={handleChange('grade')}
             onBlur={handleBlur('grade')}
-            values={values.grade}
+            value={values.grade}
           />
         </View>
         {/* PERCENTAGE */}
@@ -42,7 +42,7 @@ export function Inputs({ handleChange, handleBlur, values }) {
             keyboardType="numeric"
             onChangeText={handleChange('percentage')}
             onBlur={handleBlur('percentage')}
-            values={values.percentage}
+            value={values.percentage}
           />
         </View>
         {/* PARAMETER */}
@@ -54,7 +54,7 @@ export function Inputs({ handleChange, handleBlur, values }) {
             keyboardType="default"
             onChangeText={handleChange('parameter')}
             onBlur={handleBlur('parameter')}
-            values={values.parameter}
+            value={values.parameter}
           />
         </View>
       </View>
