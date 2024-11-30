@@ -28,7 +28,7 @@ export function StudentCard() {
           <Text style={{ fontFamily: 'Sora_300Light' }} className="color-slate-400 text-base"># Asignaturas</Text>
         </View>
         <View className="flex-row items-center">
-          <Link asChild href="/">
+          <Link asChild href="/Update">
             <FontAwesome name="pencil" size={26} color="#fca130" />
           </Link>
           <FontAwesome className="ml-8" name="trash" size={26} color="#f93e3e" />
