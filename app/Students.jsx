@@ -2,9 +2,9 @@ import { useFonts } from 'expo-font';
 import { Sora_100Thin, Sora_200ExtraLight, Sora_300Light, Sora_400Regular, Sora_500Medium, Sora_600SemiBold, Sora_700Bold, Sora_800ExtraBold } from '@expo-google-fonts/sora';
 import { View, Text, Pressable, ScrollView } from 'react-native';
 import { Link } from 'expo-router';
-import { Student } from '../components/Student';
+import { StudentCard } from '../components/StudentCard';
 
-export default function Read() {
+export default function Students() {
   const [fontsLoaded] = useFonts({
     Sora_100Thin,
     Sora_200ExtraLight,
@@ -24,27 +24,34 @@ export default function Read() {
     <>
       {/* TITLE */}
       <View className="h-1/4 justify-end items-center">
-        <Text style={{ fontFamily: 'Sora_700Bold' }} className="color-white text-2xl">Consultar Estudiante</Text>
+        <Text style={{ fontFamily: 'Sora_700Bold' }} className="color-white text-2xl">Estudiantes</Text>
       </View>
 
       {/* TABLE */}
-      <View className="w-full h-1/2 pt-5 pr-10 pb-10 pl-10">
+      <View className="w-full h-1/2 pt-5 pr-2 pb-10 pl-2">
         <ScrollView>
-          <Student />
+          <StudentCard />
         </ScrollView>
 
         {/* SCROLLVIEW OR THIS... */}
         {/* <View className="h-full justify-center items-center">
-          <Text style={{ fontFamily: 'Sora_400Regular' }} className="color-white text-lg">Aún no hay estudiantes</Text>
+          <Text style={{ fontFamily: 'Sora_500Medium' }} className="color-white text-lg">Aún no hay estudiantes registrados...</Text>
         </View> */}
       </View>
 
       {/* BUTTONS */}
-      <View className="w-full h-1/4">
-        <Link asChild href="/Menu">
-          <Pressable className="w-full h-14 bg-[#f93e3e] border-none rounded-lg items-center justify-center">
+      <View className="w-full h-1/4 items-center">
+        <Link asChild href="/Create">
+          <Pressable className="w-full h-14 bg-[#6440a5] border-none rounded-lg items-center justify-center mb-16">
             <Text style={{ fontFamily: 'Sora_500Medium' }} className="color-white text-lg">
-              Atrás
+              Registrar Estudiante
+            </Text>
+          </Pressable>
+        </Link>
+        <Link asChild href="/">
+          <Pressable className="w-48 h-14 bg-[#f93e3e] border-none rounded-lg items-center justify-center">
+            <Text style={{ fontFamily: 'Sora_500Medium' }} className="color-white text-lg">
+              Log Out
             </Text>
           </Pressable>
         </Link>

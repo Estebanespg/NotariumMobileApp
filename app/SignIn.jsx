@@ -33,7 +33,7 @@ export function SignIn() {
 
   // HANDLE SIGNIN
   const handleSignIn = (values) => {
-    router.navigate("/Menu");
+    router.navigate("/Students");
     console.log(values);
   }
 

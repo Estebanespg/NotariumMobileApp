@@ -371,13 +371,13 @@ export default function Create() {
                   title="Submit"
                   onPress={handleSubmit}>
                   <Text style={{ fontFamily: 'Sora_500Medium' }} className="color-white text-lg">
-                    Crear
+                    Registrar
                   </Text>
                 </Pressable>
-                <Link asChild href="/Menu">
+                <Link asChild href="/Students">
                   <Pressable className="w-full h-14 bg-[#f93e3e] border-none rounded-lg items-center justify-center">
                     <Text style={{ fontFamily: 'Sora_500Medium' }} className="color-white text-lg">
-                      Atrás
+                      Cancelar
                     </Text>
                   </Pressable>
                 </Link>
