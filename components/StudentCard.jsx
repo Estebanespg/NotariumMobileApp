@@ -22,18 +22,17 @@ export function StudentCard() {
 
   return (
     <>
-      <View className="flex-row w-full h-20 justify-between items-center bg-slate-600 px-6 mt-5 rounded-lg">
-        <View>
-          <Text style={{ fontFamily: 'Sora_600SemiBold' }} className="color-white text-lg">Student</Text>
-          <Text style={{ fontFamily: 'Sora_300Light' }} className="color-slate-400 text-base"># Asignaturas</Text>
+      <Link href="/Read">
+        <View className="flex-row w-full h-20 justify-between items-center bg-slate-600 px-6 mt-5 rounded-lg">
+          <View>
+            <Text style={{ fontFamily: 'Sora_600SemiBold' }} className="color-white text-lg">Student</Text>
+            <Text style={{ fontFamily: 'Sora_300Light' }} className="color-slate-400 text-base"># Subjects</Text>
+          </View>
+          <View>
+            <FontAwesome name="trash" size={26} color="#f93e3e" />
+          </View>
         </View>
-        <View className="flex-row items-center">
-          <Link asChild href="/Update">
-            <FontAwesome name="pencil" size={26} color="#fca130" />
-          </Link>
-          <FontAwesome className="ml-8" name="trash" size={26} color="#f93e3e" />
-        </View>
-      </View>
+      </Link>
     </>
   );
 }

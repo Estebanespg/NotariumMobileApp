@@ -8,7 +8,7 @@ import * as Yup from 'yup';
 import { Link } from 'expo-router';
 import { Inputs } from '../components/Inputs';
 
-export default function Update() {
+export default function CreateSubject() {
   const [fontsLoaded] = useFonts({
     Sora_100Thin,
     Sora_200ExtraLight,
@@ -49,7 +49,7 @@ export default function Update() {
     <>
       {/* TITLE */}
       <View className="h-1/4 justify-end items-center">
-        <Text style={{ fontFamily: 'Sora_700Bold' }} className="color-white text-2xl">Editar Asignatura</Text>
+        <Text style={{ fontFamily: 'Sora_700Bold' }} className="color-white text-2xl">Agregar Asignatura</Text>
       </View>
       <Formik
         initialValues={{
@@ -150,7 +150,7 @@ export default function Update() {
                   title="Submit"
                   onPress={handleSubmit}>
                   <Text style={{ fontFamily: 'Sora_500Medium' }} className="color-white text-lg">
-                    Editar
+                    Agregar
                   </Text>
                 </Pressable>
                 <Link asChild href="/Read">
