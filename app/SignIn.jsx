@@ -25,8 +25,8 @@ export function SignIn() {
 
   // VALIDATION
   const SignUpSchema = Yup.object().shape({
-    user: Yup.string()
-      .required('Por favor ingresa tu usuario!'),
+    email: Yup.string()
+    .required('Por favor ingresa un correo!'),
     password: Yup.string()
       .required('Por favor ingresa tu contraseña!'),
   });
@@ -47,27 +47,27 @@ export function SignIn() {
 
       {/* FORM */}
       <Formik
-       initialValues={{user: "", password: ""}}
+       initialValues={{email: "", password: ""}}
        validationSchema={SignUpSchema}
        onSubmit={handleSignIn}
       >
         {({ handleChange, handleBlur, handleSubmit, isValid, values }) => (
           <>
-            {/* USER INPUT */}
+            {/* EMAIL INPUT */}
             <View className="flex-row items-center h-14 w-full bg-[#11181d] border-2 border-slate-600 rounded-2xl px-3 mb-2">
-              <FontAwesome className="ml-1 mr-2" name="user" size={22} color="white" />
+              <FontAwesome className="ml-1 mr-2" name="at" size={22} color="white" />
               <TextInput
                 style={{ fontFamily: 'Sora_400Regular' }}
                 className="flex-1 placeholder:text-slate-600 color-white h-full text-lg"
-                placeholder="Usuario"
+                placeholder="Correo"
                 keyboardType="default"
-                onChangeText={handleChange('user')}
-                onBlur={handleBlur('user')}
-                values={values.user}
+                onChangeText={handleChange('email')}
+                onBlur={handleBlur('email')}
+                values={values.email}
               />
             </View>
             <View className="flex justify-start w-full mb-6">
-              <ErrorMessage name="user">
+              <ErrorMessage name="email">
                 {msg =>
                   <Text
                     style={{ fontFamily: 'Sora_700Bold' }}

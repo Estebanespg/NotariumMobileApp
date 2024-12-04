@@ -25,10 +25,10 @@ export default function SignUp() {
 
   // VALIDATION
   const SignUpSchema = Yup.object().shape({
-    user: Yup.string()
-      .min(2, 'Muy corto!')
-      .max(20, 'Muy Largo!')
-      .required('Por favor ingresa un usuario!'),
+    email: Yup.string()
+      .email('Correo Inválido')
+      .required('Por favor ingresa un correo!')
+      .matches(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/, "El formato del correo electrónico es inválido"),
     password: Yup.string()
       .min(8, 'Muy corta!')
       .required('Por favor ingresa una contraseña!')
@@ -50,27 +50,27 @@ export default function SignUp() {
 
       {/* FORM */}
       <Formik
-       initialValues={{user: "", password: ""}}
-       validationSchema={SignUpSchema}
-       onSubmit={handleSignUp}
+        initialValues={{ email: "", password: "" }}
+        validationSchema={SignUpSchema}
+        onSubmit={handleSignUp}
       >
         {({ handleChange, handleBlur, handleSubmit, isValid, values }) => (
           <>
-            {/* USER INPUT */}
+            {/* EMAIL INPUT */}
             <View className="flex-row items-center h-14 w-full bg-[#11181d] border-2 border-slate-600 rounded-2xl px-3 mb-2">
-              <FontAwesome className="ml-1 mr-2" name="user" size={22} color="white" />
+              <FontAwesome className="ml-1 mr-2" name="at" size={22} color="white" />
               <TextInput
                 style={{ fontFamily: 'Sora_400Regular' }}
                 className="flex-1 placeholder:text-slate-600 color-white h-full text-lg"
-                placeholder="Usuario"
+                placeholder="Correo"
                 keyboardType="default"
-                onChangeText={handleChange('user')}
-                onBlur={handleBlur('user')}
-                values={values.user}
+                onChangeText={handleChange('email')}
+                onBlur={handleBlur('email')}
+                values={values.email}
               />
             </View>
             <View className="flex justify-start w-full mb-6">
-              <ErrorMessage name="user">
+              <ErrorMessage name="email">
                 {msg =>
                   <Text
                     style={{ fontFamily: 'Sora_700Bold' }}
