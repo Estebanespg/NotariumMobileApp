@@ -1,11 +1,13 @@
 import { useFonts } from 'expo-font';
 import { Sora_100Thin, Sora_200ExtraLight, Sora_300Light, Sora_400Regular, Sora_500Medium, Sora_600SemiBold, Sora_700Bold, Sora_800ExtraBold } from '@expo-google-fonts/sora';
-import { View, Text, Image, Pressable, TextInput } from 'react-native';
+import { View, Text, Image, Pressable, TextInput, Alert } from 'react-native';
 import { ErrorMessage, Formik } from 'formik';
 import * as Yup from 'yup';
 import icon from '../assets/ic_notarium_light_white.png';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Link } from 'expo-router';
+import { Link, router } from 'expo-router';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebase';
 
 export default function SignUp() {
   const [fontsLoaded] = useFonts({
@@ -35,9 +37,31 @@ export default function SignUp() {
       .matches(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/, "La contraseña debe tener al menos 8 caracteres, incluyendo una mayúscula, un número y un símbolo especial."),
   });
 
-  // HANDLE SIGNIN
+  // HANDLE SIGNUP
   const handleSignUp = (values) => {
-    console.log(values);
+    createUserWithEmailAndPassword(auth, values.email, values.password)
+      .then((userCredentials) => {
+        const user = userCredentials.user;
+        // console.log(user.uid);
+        Alert.alert('Te has registrado!', `Registro exitoso! ${user.email}`, [
+          { text: 'OK', onPress: () => router.navigate("/Students") },
+        ]);
+      })
+      .catch((error) => {
+        if (error.code === 'auth/email-already-in-use') {
+          Alert.alert('El correo ya está en uso', `${error.code}`, [
+            { text: 'OK', onPress: () => { } },
+          ]);
+        } else if (error.code === 'auth/invalid-email') {
+          Alert.alert('Correo inválido', `${error.code}`, [
+            { text: 'OK', onPress: () => { } },
+          ]);
+        } else {
+          Alert.alert('Error', `${error.code}`, [
+            { text: 'OK', onPress: () => { } },
+          ]);
+        }
+      })
   }
 
   return (
