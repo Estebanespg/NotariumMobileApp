@@ -39,7 +39,7 @@ export function SignIn() {
       .then((userCredential) => {
         const user = userCredential.user;
         // console.log(user.uid);
-        Alert.alert('Has iniciado sesión!', `Inicio de sesión exitoso! ${user.email}`, [
+        Alert.alert('Has iniciado sesión!', `Inicio de sesión exitoso! \n${user.email}`, [
           { text: 'OK', onPress: () => router.navigate("/Students") },
         ]);
       })
@@ -83,7 +83,7 @@ export function SignIn() {
                 style={{ fontFamily: 'Sora_400Regular' }}
                 className="flex-1 placeholder:text-slate-600 color-white h-full text-lg"
                 placeholder="Correo"
-                keyboardType="default"
+                keyboardType="email-address"
                 onChangeText={handleChange('email')}
                 onBlur={handleBlur('email')}
                 values={values.email}

@@ -43,7 +43,7 @@ export default function SignUp() {
       .then((userCredential) => {
         const user = userCredential.user;
         // console.log(user.uid);
-        Alert.alert('Te has registrado!', `Registro exitoso! ${user.email}`, [
+        Alert.alert('Te has registrado!', `Registro exitoso! \n${user.email}`, [
           { text: 'OK', onPress: () => router.navigate("/Students") },
         ]);
       })
