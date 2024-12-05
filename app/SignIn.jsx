@@ -1,11 +1,13 @@
 import { useFonts } from 'expo-font';
 import { Sora_100Thin, Sora_200ExtraLight, Sora_300Light, Sora_400Regular, Sora_500Medium, Sora_600SemiBold, Sora_700Bold, Sora_800ExtraBold } from '@expo-google-fonts/sora';
-import { View, Text, Image, Pressable, TextInput } from 'react-native';
+import { View, Text, Image, Pressable, TextInput, Alert } from 'react-native';
 import { ErrorMessage, Formik } from 'formik';
 import * as Yup from 'yup';
 import icon from '../assets/ic_notarium_light_white.png';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Link, router } from 'expo-router';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebase';
 
 export function SignIn() {
   const [fontsLoaded] = useFonts({
@@ -26,15 +28,36 @@ export function SignIn() {
   // VALIDATION
   const SignUpSchema = Yup.object().shape({
     email: Yup.string()
-    .required('Por favor ingresa un correo!'),
+      .required('Por favor ingresa un correo!'),
     password: Yup.string()
       .required('Por favor ingresa tu contraseña!'),
   });
 
   // HANDLE SIGNIN
   const handleSignIn = (values) => {
-    router.navigate("/Students");
-    console.log(values);
+    signInWithEmailAndPassword(auth, values.email, values.password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        // console.log(user.uid);
+        Alert.alert('Has iniciado sesión!', `Inicio de sesión exitoso! ${user.email}`, [
+          { text: 'OK', onPress: () => router.navigate("/Students") },
+        ]);
+      })
+      .catch((error) => {
+        if (error.code === 'auth/invalid-credential') {
+          Alert.alert('Correo y/o contraseña incorrectos', `Código de error: \n${error.code}`, [
+            { text: 'OK', onPress: () => { } },
+          ]);
+        } else if (error.code === 'auth/invalid-email') {
+          Alert.alert('Correo inválido', `Código de error: \n${error.code}`, [
+            { text: 'OK', onPress: () => { } },
+          ]);
+        } else {
+          Alert.alert('Error', `${error.code}`, [
+            { text: 'OK', onPress: () => { } },
+          ]);
+        }
+      })
   }
 
   return (
@@ -47,9 +70,9 @@ export function SignIn() {
 
       {/* FORM */}
       <Formik
-       initialValues={{email: "", password: ""}}
-       validationSchema={SignUpSchema}
-       onSubmit={handleSignIn}
+        initialValues={{ email: "", password: "" }}
+        validationSchema={SignUpSchema}
+        onSubmit={handleSignIn}
       >
         {({ handleChange, handleBlur, handleSubmit, isValid, values }) => (
           <>

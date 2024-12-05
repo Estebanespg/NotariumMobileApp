@@ -40,8 +40,8 @@ export default function SignUp() {
   // HANDLE SIGNUP
   const handleSignUp = (values) => {
     createUserWithEmailAndPassword(auth, values.email, values.password)
-      .then((userCredentials) => {
-        const user = userCredentials.user;
+      .then((userCredential) => {
+        const user = userCredential.user;
         // console.log(user.uid);
         Alert.alert('Te has registrado!', `Registro exitoso! ${user.email}`, [
           { text: 'OK', onPress: () => router.navigate("/Students") },
@@ -49,11 +49,11 @@ export default function SignUp() {
       })
       .catch((error) => {
         if (error.code === 'auth/email-already-in-use') {
-          Alert.alert('El correo ya está en uso', `${error.code}`, [
+          Alert.alert('El correo ya está en uso', `Código de error: \n${error.code}`, [
             { text: 'OK', onPress: () => { } },
           ]);
         } else if (error.code === 'auth/invalid-email') {
-          Alert.alert('Correo inválido', `${error.code}`, [
+          Alert.alert('Correo inválido', `Código de error: \n${error.code}`, [
             { text: 'OK', onPress: () => { } },
           ]);
         } else {
