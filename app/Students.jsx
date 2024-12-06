@@ -64,7 +64,6 @@ export default function Students() {
             <FontAwesome name="plus" size={18} color="white" />
           </Pressable>
         </Link>
-        {/* <Link asChild href="/"> */}
         <Pressable
           onPress={handleSignOut}
           className="w-full h-14 bg-[#f93e3e] border-none rounded-lg items-center justify-center">
@@ -72,7 +71,6 @@ export default function Students() {
             Log Out
           </Text>
         </Pressable>
-        {/* </Link> */}
       </View>
 
       {/* TEXT */}
