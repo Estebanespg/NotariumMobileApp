@@ -38,30 +38,31 @@ export default function SignUp() {
   });
 
   // HANDLE SIGNUP
-  const handleSignUp = (values) => {
-    createUserWithEmailAndPassword(auth, values.email, values.password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        // console.log(user.uid);
-        Alert.alert('Te has registrado!', `Registro exitoso! \n${user.email}`, [
-          { text: 'OK', onPress: () => router.navigate("/Students") },
+  const handleSignUp = async (values) => {
+    try {
+      await createUserWithEmailAndPassword(auth, values.email, values.password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          // console.log(user.uid);
+          Alert.alert('Te has registrado!', `Registro exitoso! \n${user.email}`, [
+            { text: 'OK', onPress: () => router.navigate("/Students") },
+          ]);
+        })
+    } catch (error) {
+      if (error.code === 'auth/email-already-in-use') {
+        Alert.alert('El correo ya está en uso', `Código de error: \n${error.code}`, [
+          { text: 'OK', onPress: () => { } },
         ]);
-      })
-      .catch((error) => {
-        if (error.code === 'auth/email-already-in-use') {
-          Alert.alert('El correo ya está en uso', `Código de error: \n${error.code}`, [
-            { text: 'OK', onPress: () => { } },
-          ]);
-        } else if (error.code === 'auth/invalid-email') {
-          Alert.alert('Correo inválido', `Código de error: \n${error.code}`, [
-            { text: 'OK', onPress: () => { } },
-          ]);
-        } else {
-          Alert.alert('Error', `${error.code}`, [
-            { text: 'OK', onPress: () => { } },
-          ]);
-        }
-      })
+      } else if (error.code === 'auth/invalid-email') {
+        Alert.alert('Correo inválido', `Código de error: \n${error.code}`, [
+          { text: 'OK', onPress: () => { } },
+        ]);
+      } else {
+        Alert.alert('Error', `${error.code}`, [
+          { text: 'OK', onPress: () => { } },
+        ]);
+      }
+    }
   }
 
   return (

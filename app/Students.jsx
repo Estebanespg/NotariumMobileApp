@@ -4,6 +4,7 @@ import { View, Text, Pressable, ScrollView } from 'react-native';
 import { Link } from 'expo-router';
 import { StudentCard } from '../components/StudentCard';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
+import { useAuth } from '../context/AuthContext';
 
 export default function Students() {
   const [fontsLoaded] = useFonts({
@@ -21,11 +22,14 @@ export default function Students() {
     return <Text>Cargando fuentes...</Text>;
   }
 
+  const user = useAuth();
+
   return (
     <>
       {/* TITLE */}
       <View className="h-1/4 justify-end items-center">
-        <Text style={{ fontFamily: 'Sora_700Bold' }} className="color-white text-2xl">Estudiantes</Text>
+        <Text style={{ fontFamily: 'Sora_700Bold' }} className="color-white text-2xl">Estudiantes del usuario:</Text>
+        {user ? <Text style={{ fontFamily: 'Sora_700Bold' }} className="color-white text-2xl">{user.email}</Text> : <Text></Text>}
       </View>
 
       {/* TABLE */}

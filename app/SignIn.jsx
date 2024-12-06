@@ -34,30 +34,31 @@ export function SignIn() {
   });
 
   // HANDLE SIGNIN
-  const handleSignIn = (values) => {
-    signInWithEmailAndPassword(auth, values.email, values.password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        // console.log(user.uid);
-        Alert.alert('Has iniciado sesión!', `Inicio de sesión exitoso! \n${user.email}`, [
-          { text: 'OK', onPress: () => router.navigate("/Students") },
+  const handleSignIn = async (values) => {
+    try {
+      await signInWithEmailAndPassword(auth, values.email, values.password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          // console.log(user.uid);
+          Alert.alert('Has iniciado sesión!', `Inicio de sesión exitoso! \n${user.email}`, [
+            { text: 'OK', onPress: () => router.navigate("/Students") },
+          ]);
+        })
+    } catch (error) {
+      if (error.code === 'auth/invalid-credential') {
+        Alert.alert('Correo y/o contraseña incorrectos', `Código de error: \n${error.code}`, [
+          { text: 'OK', onPress: () => { } },
         ]);
-      })
-      .catch((error) => {
-        if (error.code === 'auth/invalid-credential') {
-          Alert.alert('Correo y/o contraseña incorrectos', `Código de error: \n${error.code}`, [
-            { text: 'OK', onPress: () => { } },
-          ]);
-        } else if (error.code === 'auth/invalid-email') {
-          Alert.alert('Correo inválido', `Código de error: \n${error.code}`, [
-            { text: 'OK', onPress: () => { } },
-          ]);
-        } else {
-          Alert.alert('Error', `${error.code}`, [
-            { text: 'OK', onPress: () => { } },
-          ]);
-        }
-      })
+      } else if (error.code === 'auth/invalid-email') {
+        Alert.alert('Correo inválido', `Código de error: \n${error.code}`, [
+          { text: 'OK', onPress: () => { } },
+        ]);
+      } else {
+        Alert.alert('Error', `${error.code}`, [
+          { text: 'OK', onPress: () => { } },
+        ]);
+      }
+    }
   }
 
   return (
