@@ -1,10 +1,12 @@
 import { useFonts } from 'expo-font';
 import { Sora_100Thin, Sora_200ExtraLight, Sora_300Light, Sora_400Regular, Sora_500Medium, Sora_600SemiBold, Sora_700Bold, Sora_800ExtraBold } from '@expo-google-fonts/sora';
 import { View, Text, Pressable, ScrollView } from 'react-native';
-import { Link } from 'expo-router';
+import { Link, router } from 'expo-router';
 import { StudentCard } from '../components/StudentCard';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { useAuth } from '../context/AuthContext';
+import { auth } from '../firebase';
+import { signOut } from 'firebase/auth';
 
 export default function Students() {
   const [fontsLoaded] = useFonts({
@@ -24,12 +26,23 @@ export default function Students() {
 
   const user = useAuth();
 
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth);
+      router.navigate("/");
+    } catch (error) {
+      Alert.alert('Error', `${error.code}`, [
+        { text: 'OK', onPress: () => { } },
+      ]);
+    }
+  }
+
   return (
     <>
       {/* TITLE */}
       <View className="h-1/4 justify-end items-center">
         <Text style={{ fontFamily: 'Sora_700Bold' }} className="color-white text-2xl">Estudiantes del usuario:</Text>
-        {user ? <Text style={{ fontFamily: 'Sora_700Bold' }} className="color-white text-2xl">{user.email}</Text> : <Text></Text>}
+        {user ? <Text style={{ fontFamily: 'Sora_300Light' }} className="color-white">{user.email}</Text> : <Text></Text>}
       </View>
 
       {/* TABLE */}
@@ -51,13 +64,15 @@ export default function Students() {
             <FontAwesome name="plus" size={18} color="white" />
           </Pressable>
         </Link>
-        <Link asChild href="/">
-          <Pressable className="w-full h-14 bg-[#f93e3e] border-none rounded-lg items-center justify-center">
-            <Text style={{ fontFamily: 'Sora_500Medium' }} className="color-white text-lg">
-              Log Out
-            </Text>
-          </Pressable>
-        </Link>
+        {/* <Link asChild href="/"> */}
+        <Pressable
+          onPress={handleSignOut}
+          className="w-full h-14 bg-[#f93e3e] border-none rounded-lg items-center justify-center">
+          <Text style={{ fontFamily: 'Sora_500Medium' }} className="color-white text-lg">
+            Log Out
+          </Text>
+        </Pressable>
+        {/* </Link> */}
       </View>
 
       {/* TEXT */}
