@@ -9,6 +9,8 @@ import { auth } from '../firebase';
 import { signOut } from 'firebase/auth';
 
 export default function Students() {
+  const { user } = useAuth();
+
   const [fontsLoaded] = useFonts({
     Sora_100Thin,
     Sora_200ExtraLight,
@@ -23,8 +25,6 @@ export default function Students() {
   if (!fontsLoaded) {
     return <Text>Cargando fuentes...</Text>;
   }
-
-  const user = useAuth();
 
   const handleSignOut = async () => {
     try {
