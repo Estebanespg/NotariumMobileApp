@@ -42,7 +42,7 @@ export default function Students() {
       {/* TITLE */}
       <View className="h-1/4 justify-end items-center">
         <Text style={{ fontFamily: 'Sora_700Bold' }} className="color-white text-2xl">Estudiantes del usuario:</Text>
-        {user ? <Text style={{ fontFamily: 'Sora_300Light' }} className="color-white">{user.email}</Text> : <Text></Text>}
+        {user ? <Text style={{ fontFamily: 'Sora_400Regular' }} className="color-white">{user.email}</Text> : <Text></Text>}
       </View>
 
       {/* TABLE */}

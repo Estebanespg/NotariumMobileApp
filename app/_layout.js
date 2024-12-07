@@ -1,7 +1,7 @@
 import * as NavigationBar from 'expo-navigation-bar';
 import { StatusBar } from 'expo-status-bar';
-import { Slot } from 'expo-router'
-import { View } from 'react-native'
+import { Slot } from 'expo-router';
+import { View } from 'react-native';
 import "../global.css";
 import { AuthContextProvider } from '../context/AuthContext';
 
