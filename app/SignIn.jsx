@@ -37,6 +37,7 @@ export default function SignIn() {
   const handleSignIn = async (values) => {
     try {
       await signInWithEmailAndPassword(auth, values.email, values.password);
+      Alert.alert("Iniciar Sesión", "Inicio de sesión exitoso!");
     } catch (error) {
       if (error.code === 'auth/invalid-credential') {
         Alert.alert('Correo y/o contraseña incorrectos', `Código de error: \n${error.code}`, [
