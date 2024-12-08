@@ -36,14 +36,7 @@ export default function SignIn() {
   // HANDLE SIGNIN
   const handleSignIn = async (values) => {
     try {
-      await signInWithEmailAndPassword(auth, values.email, values.password)
-        .then((userCredential) => {
-          const user = userCredential.user;
-          // console.log(user.uid);
-          Alert.alert('Has iniciado sesión!', `Inicio de sesión exitoso! \n${user.email}`, [
-            { text: 'OK', onPress: () => router.navigate("/Students") },
-          ]);
-        })
+      await signInWithEmailAndPassword(auth, values.email, values.password);
     } catch (error) {
       if (error.code === 'auth/invalid-credential') {
         Alert.alert('Correo y/o contraseña incorrectos', `Código de error: \n${error.code}`, [
