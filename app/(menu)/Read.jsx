@@ -19,7 +19,7 @@ export default function Read() {
   });
 
   if (!fontsLoaded) {
-    return <Text>Cargando fuentes...</Text>;
+    return <ScreenLayout><Text className="color-white">Cargando fuentes...</Text></ScreenLayout>;
   }
 
   return (

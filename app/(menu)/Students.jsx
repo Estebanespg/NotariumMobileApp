@@ -24,7 +24,7 @@ export default function Students() {
   });
 
   if (!fontsLoaded) {
-    return <Text>Cargando fuentes...</Text>;
+    return <ScreenLayout><Text className="color-white">Cargando fuentes...</Text></ScreenLayout>;
   }
 
   const handleSignOut = async () => {
