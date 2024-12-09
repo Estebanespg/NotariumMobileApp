@@ -31,7 +31,7 @@ export default function Read() {
       </View>
 
       {/* TABLE */}
-      <View className="w-full h-1/2 pt-5 pr-2 pb-10 pl-2">
+      <View className="w-full h-1/2 pt-5 pr-2 pl-2">
         <ScrollView>
           <SubjectCard />
         </ScrollView>
@@ -43,17 +43,10 @@ export default function Read() {
       </View>
 
       {/* BUTTONS */}
-      <View className="w-full h-1/4 items-end">
+      <View className="w-full h-1/4 items-end justify-center">
         <Link asChild href="/CreateSubject">
           <Pressable className="w-16 h-16 bg-[#6440a5] border-none rounded-full items-center justify-center mb-3">
             <FontAwesome name="plus" size={18} color="white" />
-          </Pressable>
-        </Link>
-        <Link asChild href="/Students">
-          <Pressable className="w-full h-14 bg-[#f93e3e] border-none rounded-lg items-center justify-center">
-            <Text style={{ fontFamily: 'Sora_500Medium' }} className="color-white text-lg">
-              Atrás
-            </Text>
           </Pressable>
         </Link>
       </View>

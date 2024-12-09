@@ -5,7 +5,6 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { View, Text, TextInput, Pressable, ScrollView } from 'react-native';
 import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { Link } from 'expo-router';
 import { Inputs } from '../../components/Inputs';
 import ScreenLayout from '../../components/ScreenLayout';
 
@@ -154,13 +153,6 @@ export default function Update() {
                     Editar
                   </Text>
                 </Pressable>
-                <Link asChild href="/Read">
-                  <Pressable className="w-full h-14 bg-[#f93e3e] border-none rounded-lg items-center justify-center">
-                    <Text style={{ fontFamily: 'Sora_500Medium' }} className="color-white text-lg">
-                      Cancelar
-                    </Text>
-                  </Pressable>
-                </Link>
               </View>
             </>
           );
