@@ -8,6 +8,7 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Link, router } from 'expo-router';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
+import ScreenLayout from '../components/ScreenLayout';
 
 export default function SignIn() {
   const [fontsLoaded] = useFonts({
@@ -38,6 +39,7 @@ export default function SignIn() {
     try {
       await signInWithEmailAndPassword(auth, values.email, values.password);
       Alert.alert("Iniciar Sesión", "Inicio de sesión exitoso!");
+      router.navigate("/Students");
     } catch (error) {
       if (error.code === 'auth/invalid-credential') {
         Alert.alert('Correo y/o contraseña incorrectos', `Código de error: \n${error.code}`, [
@@ -56,7 +58,7 @@ export default function SignIn() {
   }
 
   return (
-    <>
+    <ScreenLayout>
       {/* IMAGE */}
       <Image className="w-32 h-32 mb-12" source={icon} />
 
@@ -141,6 +143,6 @@ export default function SignIn() {
 
       {/* TEXT */}
       <Text style={{ fontFamily: 'Sora_600SemiBold' }} className="absolute bottom-2.5 left-0 right-0 text-center color-white tracking-wide">Notarium</Text>
-    </>
+    </ScreenLayout>
   )
 }

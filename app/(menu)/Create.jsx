@@ -6,9 +6,10 @@ import { View, Text, TextInput, Pressable, ScrollView } from 'react-native';
 import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Link } from 'expo-router';
-import { Inputs } from '../components/Inputs';
+import { Inputs } from '../../components/Inputs';
+import ScreenLayout from '../../components/ScreenLayout';
 
-export default function CreateSubject() {
+export default function Create() {
   const [fontsLoaded] = useFonts({
     Sora_100Thin,
     Sora_200ExtraLight,
@@ -46,13 +47,14 @@ export default function CreateSubject() {
   const [dynamicInputs, setDynamicInputs] = useState([{ id: 1 }]);
 
   return (
-    <>
+    <ScreenLayout>
       {/* TITLE */}
       <View className="h-1/4 justify-end items-center">
-        <Text style={{ fontFamily: 'Sora_700Bold' }} className="color-white text-2xl">Agregar Asignatura</Text>
+        <Text style={{ fontFamily: 'Sora_700Bold' }} className="color-white text-2xl">Registrar Estudiante</Text>
       </View>
       <Formik
         initialValues={{
+          student: '',
           subject: '',
           inputs: [{ grade: '', percentage: '', parameter: '' }],
         }}
@@ -72,6 +74,29 @@ export default function CreateSubject() {
             <>
               <View className="h-1/2 py-10">
                 <ScrollView>
+                  {/* STUDENT */}
+                  <View className="flex-row items-center h-14 w-full bg-[#11181d] border-2 border-slate-600 rounded-2xl px-3 mb-2">
+                    <FontAwesome className="ml-1 mr-2" name="user" size={22} color="white" />
+                    <TextInput
+                      style={{ fontFamily: 'Sora_400Regular' }}
+                      className="flex-1 placeholder:text-slate-600 color-white h-full text-lg"
+                      placeholder="Estudiante"
+                      keyboardType="default"
+                      onChangeText={handleChange('student')}
+                      onBlur={handleBlur('student')}
+                      value={values.student}
+                    />
+                  </View>
+                  <View className="flex justify-start w-full mb-5">
+                    <ErrorMessage name="student">
+                      {(msg) => (
+                        <Text style={{ fontFamily: 'Sora_700Bold' }} className="justify-start text-red-700 text-sm">
+                          {msg}
+                        </Text>
+                      )}
+                    </ErrorMessage>
+                  </View>
+
                   {/* SUBJECT */}
                   <View className="flex-row items-center h-14 w-full bg-[#11181d] border-2 border-slate-600 rounded-2xl px-3 mb-2">
                     <FontAwesome className="ml-1 mr-2" name="book" size={22} color="white" />
@@ -150,10 +175,10 @@ export default function CreateSubject() {
                   title="Submit"
                   onPress={handleSubmit}>
                   <Text style={{ fontFamily: 'Sora_500Medium' }} className="color-white text-lg">
-                    Agregar
+                    Registrar
                   </Text>
                 </Pressable>
-                <Link asChild href="/Read">
+                <Link asChild href="/Students">
                   <Pressable className="w-full h-14 bg-[#f93e3e] border-none rounded-lg items-center justify-center">
                     <Text style={{ fontFamily: 'Sora_500Medium' }} className="color-white text-lg">
                       Cancelar
@@ -168,6 +193,6 @@ export default function CreateSubject() {
 
       {/* TEXT */}
       <Text style={{ fontFamily: 'Sora_600SemiBold' }} className="absolute bottom-2.5 left-0 right-0 text-center color-white tracking-wide">Notarium</Text>
-    </>
+    </ScreenLayout>
   );
 }

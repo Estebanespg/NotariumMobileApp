@@ -2,11 +2,12 @@ import { useFonts } from 'expo-font';
 import { Sora_100Thin, Sora_200ExtraLight, Sora_300Light, Sora_400Regular, Sora_500Medium, Sora_600SemiBold, Sora_700Bold, Sora_800ExtraBold } from '@expo-google-fonts/sora';
 import { View, Text, Pressable, ScrollView } from 'react-native';
 import { Link, router } from 'expo-router';
-import { StudentCard } from '../components/StudentCard';
+import { StudentCard } from '../../components/StudentCard';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { useAuth } from '../context/AuthContext';
-import { auth } from '../firebase';
+import { useAuth } from '../../context/AuthContext';
+import { auth } from '../../firebase';
 import { signOut } from 'firebase/auth';
+import ScreenLayout from '../../components/ScreenLayout';
 
 export default function Students() {
   const { user } = useAuth();
@@ -38,7 +39,7 @@ export default function Students() {
   }
 
   return (
-    <>
+    <ScreenLayout>
       {/* TITLE */}
       <View className="h-1/4 justify-end items-center">
         <Text style={{ fontFamily: 'Sora_700Bold' }} className="color-white text-2xl">Estudiantes del usuario:</Text>
@@ -75,6 +76,6 @@ export default function Students() {
 
       {/* TEXT */}
       <Text style={{ fontFamily: 'Sora_600SemiBold' }} className="absolute bottom-2.5 left-0 right-0 text-center color-white tracking-wide">Notarium</Text>
-    </>
+    </ScreenLayout>
   );
 }

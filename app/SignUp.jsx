@@ -8,6 +8,7 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Link, router } from 'expo-router';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
+import ScreenLayout from '../components/ScreenLayout';
 
 export default function SignUp() {
   const [fontsLoaded] = useFonts({
@@ -61,7 +62,7 @@ export default function SignUp() {
   }
 
   return (
-    <>
+    <ScreenLayout>
       {/* IMAGE */}
       <Image className="w-32 h-32 mb-12" source={icon} />
 
@@ -146,6 +147,6 @@ export default function SignUp() {
 
       {/* TEXT */}
       <Text style={{ fontFamily: 'Sora_600SemiBold' }} className="absolute bottom-2.5 left-0 right-0 text-center color-white tracking-wide">Notarium</Text>
-    </>
+    </ScreenLayout>
   )
 }

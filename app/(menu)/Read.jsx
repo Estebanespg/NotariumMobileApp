@@ -2,8 +2,9 @@ import { useFonts } from 'expo-font';
 import { Sora_100Thin, Sora_200ExtraLight, Sora_300Light, Sora_400Regular, Sora_500Medium, Sora_600SemiBold, Sora_700Bold, Sora_800ExtraBold } from '@expo-google-fonts/sora';
 import { View, Text, Pressable, ScrollView } from 'react-native';
 import { Link } from 'expo-router';
-import { SubjectCard } from '../components/SubjectCard';
+import { SubjectCard } from '../../components/SubjectCard';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
+import ScreenLayout from '../../components/ScreenLayout';
 
 export default function Read() {
   const [fontsLoaded] = useFonts({
@@ -22,7 +23,7 @@ export default function Read() {
   }
 
   return (
-    <>
+    <ScreenLayout>
       {/* TITLE */}
       <View className="h-1/4 justify-end items-center">
         <Text style={{ fontFamily: 'Sora_700Bold' }} className="color-white text-2xl">Student</Text>
@@ -59,6 +60,6 @@ export default function Read() {
 
       {/* TEXT */}
       <Text style={{ fontFamily: 'Sora_600SemiBold' }} className="absolute bottom-2.5 left-0 right-0 text-center color-white tracking-wide">Notarium</Text>
-    </>
+    </ScreenLayout>
   );
 }

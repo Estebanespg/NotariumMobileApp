@@ -6,9 +6,10 @@ import { View, Text, TextInput, Pressable, ScrollView } from 'react-native';
 import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Link } from 'expo-router';
-import { Inputs } from '../components/Inputs';
+import { Inputs } from '../../components/Inputs';
+import ScreenLayout from '../../components/ScreenLayout';
 
-export default function Update() {
+export default function CreateSubject() {
   const [fontsLoaded] = useFonts({
     Sora_100Thin,
     Sora_200ExtraLight,
@@ -46,10 +47,10 @@ export default function Update() {
   const [dynamicInputs, setDynamicInputs] = useState([{ id: 1 }]);
 
   return (
-    <>
+    <ScreenLayout>
       {/* TITLE */}
       <View className="h-1/4 justify-end items-center">
-        <Text style={{ fontFamily: 'Sora_700Bold' }} className="color-white text-2xl">Editar Asignatura</Text>
+        <Text style={{ fontFamily: 'Sora_700Bold' }} className="color-white text-2xl">Agregar Asignatura</Text>
       </View>
       <Formik
         initialValues={{
@@ -150,7 +151,7 @@ export default function Update() {
                   title="Submit"
                   onPress={handleSubmit}>
                   <Text style={{ fontFamily: 'Sora_500Medium' }} className="color-white text-lg">
-                    Editar
+                    Agregar
                   </Text>
                 </Pressable>
                 <Link asChild href="/Read">
@@ -168,6 +169,6 @@ export default function Update() {
 
       {/* TEXT */}
       <Text style={{ fontFamily: 'Sora_600SemiBold' }} className="absolute bottom-2.5 left-0 right-0 text-center color-white tracking-wide">Notarium</Text>
-    </>
+    </ScreenLayout>
   );
 }
