@@ -68,8 +68,8 @@ export default function Students() {
         <Pressable
           onPress={handleSignOut}
           className="w-full h-14 bg-[#f93e3e] border-none rounded-lg items-center justify-center">
-          <Text style={{ fontFamily: 'Sora_500Medium' }} className="color-white text-lg">
-            Log Out
+          <Text style={{ fontFamily: 'Sora_600SemiBold' }} className="color-white text-lg">
+            Cerrar Sesión
           </Text>
         </Pressable>
       </View>
