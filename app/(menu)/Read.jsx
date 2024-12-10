@@ -25,13 +25,13 @@ export default function Read() {
   return (
     <ScreenLayout>
       {/* TITLE */}
-      <View className="h-1/4 justify-end items-center">
+      <View className="h-1/5 justify-end items-center">
         <Text style={{ fontFamily: 'Sora_700Bold' }} className="color-white text-2xl">Student</Text>
         <Text style={{ fontFamily: 'Sora_300Light' }} className="color-slate-400 text-base"># Subjects</Text>
       </View>
 
       {/* TABLE */}
-      <View className="w-full h-1/2 pt-5 pr-2 pl-2">
+      <View className="w-full h-3/5 pt-5 pr-2 pl-2">
         <ScrollView>
           <SubjectCard />
         </ScrollView>
@@ -43,7 +43,7 @@ export default function Read() {
       </View>
 
       {/* BUTTONS */}
-      <View className="w-full h-1/4 items-end justify-center">
+      <View className="w-full h-1/5 items-end justify-center">
         <Link asChild href="/CreateSubject">
           <Pressable className="w-16 h-16 bg-[#6440a5] border-none rounded-full items-center justify-center mb-3">
             <FontAwesome name="plus" size={18} color="white" />

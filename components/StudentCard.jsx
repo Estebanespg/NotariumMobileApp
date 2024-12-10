@@ -22,8 +22,8 @@ export function StudentCard() {
 
   return (
     <>
-      <Link href="/Read">
-        <View className="flex-row w-full h-20 justify-between items-center bg-slate-600 px-6 mt-5 rounded-lg">
+      <Link href="/Read" className="mb-5">
+        <View className="flex-row w-full h-20 justify-between items-center bg-slate-600 px-6 rounded-lg">
           <View>
             <Text style={{ fontFamily: 'Sora_600SemiBold' }} className="color-white text-lg">Student</Text>
             <Text style={{ fontFamily: 'Sora_300Light' }} className="color-slate-400 text-base"># Subjects</Text>

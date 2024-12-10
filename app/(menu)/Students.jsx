@@ -41,13 +41,13 @@ export default function Students() {
   return (
     <ScreenLayout>
       {/* TITLE */}
-      <View className="h-1/4 justify-end items-center">
+      <View className="h-1/5 justify-end items-center">
         <Text style={{ fontFamily: 'Sora_700Bold' }} className="color-white text-2xl">Estudiantes del usuario:</Text>
         {user ? <Text style={{ fontFamily: 'Sora_400Regular' }} className="color-white">{user.email}</Text> : <Text></Text>}
       </View>
 
       {/* TABLE */}
-      <View className="w-full h-1/2 pt-5 pr-2 pb-10 pl-2">
+      <View className="w-full h-3/5 pt-5 pr-2 pb-5 pl-2">
         <ScrollView>
           <StudentCard />
         </ScrollView>

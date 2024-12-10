@@ -48,7 +48,7 @@ export default function Create() {
   return (
     <ScreenLayout>
       {/* TITLE */}
-      <View className="h-1/4 justify-end items-center">
+      <View className="h-1/5 justify-end items-center">
         <Text style={{ fontFamily: 'Sora_700Bold' }} className="color-white text-2xl">Registrar Estudiante</Text>
       </View>
       <Formik
@@ -71,7 +71,7 @@ export default function Create() {
 
           return (
             <>
-              <View className="h-1/2 py-10">
+              <View className="h-3/5 pt-10">
                 <ScrollView>
                   {/* STUDENT */}
                   <View className="flex-row items-center h-14 w-full bg-[#11181d] border-2 border-slate-600 rounded-2xl px-3 mb-2">
@@ -167,7 +167,7 @@ export default function Create() {
               </View>
 
               {/* BUTTONS */}
-              <View className="w-full h-1/4">
+              <View className="w-full h-1/5 justify-center">
                 <Pressable
                   disabled={!isValid}
                   className={`w-full h-14 ${isValid ? 'bg-[#6440a5]' : 'bg-[#8067ad]'} border-none rounded-lg items-center justify-center mb-5`}
