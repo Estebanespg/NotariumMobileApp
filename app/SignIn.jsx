@@ -39,7 +39,7 @@ export default function SignIn() {
     try {
       await signInWithEmailAndPassword(auth, values.email, values.password);
       Alert.alert("Iniciar Sesión", "Inicio de sesión exitoso!");
-      router.navigate("/Students");
+      router.replace("/Students");
     } catch (error) {
       if (error.code === 'auth/invalid-credential') {
         Alert.alert('Correo y/o contraseña incorrectos', `Código de error: \n${error.code}`, [

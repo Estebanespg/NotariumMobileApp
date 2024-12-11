@@ -1,6 +1,6 @@
 import { useFonts } from 'expo-font';
 import { Sora_100Thin, Sora_200ExtraLight, Sora_300Light, Sora_400Regular, Sora_500Medium, Sora_600SemiBold, Sora_700Bold, Sora_800ExtraBold } from '@expo-google-fonts/sora';
-import { View, Text, Pressable, ScrollView } from 'react-native';
+import { View, Text, Pressable, ScrollView, Alert } from 'react-native';
 import { Link, router } from 'expo-router';
 import { StudentCard } from '../../components/StudentCard';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
@@ -30,7 +30,7 @@ export default function Students() {
   const handleSignOut = async () => {
     try {
       await signOut(auth);
-      router.navigate("/");
+      router.replace("/");
     } catch (error) {
       Alert.alert('Error', `${error.code}`, [
         { text: 'OK', onPress: () => { } },

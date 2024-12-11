@@ -43,7 +43,7 @@ export default function SignUp() {
     try {
       await createUserWithEmailAndPassword(auth, values.email, values.password);
       Alert.alert("Registrarse", "Registro exitoso!");
-      router.navigate("/Students");
+      router.replace("/Students");
     } catch (error) {
       if (error.code === 'auth/email-already-in-use') {
         Alert.alert('El correo ya está en uso', `Código de error: \n${error.code}`, [

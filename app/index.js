@@ -9,9 +9,9 @@ export default function Index() {
   useEffect(() => {
     if (!loading) {
       if (user) {
-        router.navigate('/(menu)/Students');
+        router.replace('/(menu)/Students');
       } else {
-        router.navigate('/SignIn');
+        router.replace('/SignIn');
       }
     }
   }, [loading, user]);

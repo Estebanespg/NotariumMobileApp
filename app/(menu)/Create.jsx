@@ -2,13 +2,19 @@ import { useState } from 'react';
 import { useFonts } from 'expo-font';
 import { Sora_100Thin, Sora_200ExtraLight, Sora_300Light, Sora_400Regular, Sora_500Medium, Sora_600SemiBold, Sora_700Bold, Sora_800ExtraBold } from '@expo-google-fonts/sora';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { View, Text, TextInput, Pressable, ScrollView } from 'react-native';
+import { View, Text, TextInput, Pressable, ScrollView, Alert } from 'react-native';
 import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Inputs } from '../../components/Inputs';
 import ScreenLayout from '../../components/ScreenLayout';
+import { useAuth } from '../../context/AuthContext';
+import { db } from '../../firebase'
+import { collection, addDoc } from 'firebase/firestore';
+import { router } from 'expo-router';
 
 export default function Create() {
+  const { user } = useAuth();
+
   const [fontsLoaded] = useFonts({
     Sora_100Thin,
     Sora_200ExtraLight,
@@ -45,6 +51,30 @@ export default function Create() {
   // Estado para manejar entradas dinámicas
   const [dynamicInputs, setDynamicInputs] = useState([{ id: 1 }]);
 
+  const createStudent = async (values) => {
+    const totalPercentage = values.inputs.reduce((sum, input) => sum + parseFloat(input.percentage), 0);
+
+    if (totalPercentage > 100) {
+      Alert.alert("Error en los datos", "La suma de los porcentajes no puede exceder el 100%");
+      return;
+    }
+    
+    try {
+      await addDoc(collection(db, "students"), {
+        uid: user.uid,
+        student: values.student,
+        subject: values.subject,
+        grades: values.inputs
+      });
+      Alert.alert("Registrar Estudiante", "Registro exitoso!");
+      router.replace("/Students");
+    } catch (error) {
+      Alert.alert('Error', `${error.code}`, [
+        { text: 'OK', onPress: () => { } },
+      ]);
+    }
+  }
+
   return (
     <ScreenLayout>
       {/* TITLE */}
@@ -58,9 +88,7 @@ export default function Create() {
           inputs: [{ grade: '', percentage: '', parameter: '' }],
         }}
         validationSchema={validationSchema}
-        onSubmit={(values) => {
-          console.log('Formulario enviado:', values);
-        }}
+        onSubmit={createStudent}
       >
         {({ handleChange, handleBlur, handleSubmit, values, isValid, setFieldValue }) => {
           const addInputs = () => {
