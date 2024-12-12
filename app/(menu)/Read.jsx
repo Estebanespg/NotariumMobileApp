@@ -31,7 +31,7 @@ export default function Read() {
       </View>
 
       {/* TABLE */}
-      <View className="w-full h-3/5 pt-5 pr-2 pl-2">
+      <View className="w-full h-3/5 pt-5 px-2">
         <ScrollView>
           <SubjectCard />
         </ScrollView>
@@ -43,9 +43,9 @@ export default function Read() {
       </View>
 
       {/* BUTTONS */}
-      <View className="w-full h-1/5 items-end justify-center">
+      <View className="w-full h-1/5 items-end justify-center px-2">
         <Link asChild href="/CreateSubject">
-          <Pressable className="w-16 h-16 bg-[#6440a5] border-none rounded-2xl items-center justify-center mb-3">
+          <Pressable className="w-16 h-16 bg-[#6440a5] border-none rounded-2xl items-center justify-center mb-12">
             <FontAwesome name="plus" size={18} color="white" />
           </Pressable>
         </Link>

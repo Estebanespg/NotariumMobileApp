@@ -33,11 +33,23 @@ export function SubjectCard() {
           <FontAwesome className="ml-5" name="trash" size={26} color="#f93e3e" />
         </View>
       </View>
-      <View className="w-full h-auto items-center bg-slate-400 mb-8 pr-4 pb-4 pl-4 rounded-b-lg">
+      <View className="w-full h-auto items-center bg-slate-400 pr-4 pb-4 pl-4">
         <View className="w-full flex-row justify-between mt-5">
-          <Text style={{ fontFamily: 'Sora_400Regular' }} className="w-1/2 color-black text-left">Parameter</Text>
-          <Text style={{ fontFamily: 'Sora_400Regular' }} className="w-1/4 color-black text-center">Grade</Text>
-          <Text style={{ fontFamily: 'Sora_400Regular' }} className="w-1/4 color-black text-center">Percentage</Text>
+          <Text style={{ fontFamily: 'Sora_400Regular' }} className="w-3/5 color-black text-left">Parameter</Text>
+          <Text style={{ fontFamily: 'Sora_400Regular' }} className="w-1/5 color-black text-left">Grade</Text>
+          <Text style={{ fontFamily: 'Sora_400Regular' }} className="w-1/5 color-black text-center">%</Text>
+        </View>
+        <View className="w-full flex-row justify-between mt-5">
+          <Text style={{ fontFamily: 'Sora_400Regular' }} className="w-3/5 color-black text-left">Parameter</Text>
+          <Text style={{ fontFamily: 'Sora_400Regular' }} className="w-1/5 color-black text-left">Grade</Text>
+          <Text style={{ fontFamily: 'Sora_400Regular' }} className="w-1/5 color-black text-center">%</Text>
+        </View>
+      </View>
+      <View className="w-full h-auto items-center bg-slate-600 mb-8 pr-4 pb-4 pl-4 rounded-b-lg">
+        <View className="w-full flex-row justify-between mt-5">
+          <Text style={{ fontFamily: 'Sora_700Bold' }} className="w-3/5 color-emerald-500 text-left">State</Text>
+          <Text style={{ fontFamily: 'Sora_700Bold' }} className="w-1/5 color-emerald-500 text-left">Grade</Text>
+          <Text style={{ fontFamily: 'Sora_700Bold' }} className="w-1/5 color-emerald-500 text-center">%</Text>
         </View>
       </View>
     </>
