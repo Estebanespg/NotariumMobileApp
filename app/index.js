@@ -9,7 +9,7 @@ export default function Index() {
   useEffect(() => {
     if (!loading) {
       if (user) {
-        router.replace('/(menu)/Students');
+        router.replace('/Students');
       } else {
         router.replace('/SignIn');
       }

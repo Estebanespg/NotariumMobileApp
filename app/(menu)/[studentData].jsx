@@ -1,12 +1,26 @@
 import { useFonts } from 'expo-font';
 import { Sora_100Thin, Sora_200ExtraLight, Sora_300Light, Sora_400Regular, Sora_500Medium, Sora_600SemiBold, Sora_700Bold, Sora_800ExtraBold } from '@expo-google-fonts/sora';
 import { View, Text, Pressable, ScrollView } from 'react-native';
-import { Link } from 'expo-router';
+import { Link, useLocalSearchParams } from 'expo-router';
 import { SubjectCard } from '../../components/SubjectCard';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import ScreenLayout from '../../components/ScreenLayout';
+import { useState, useEffect } from 'react';
 
 export default function Read() {
+  const { studentData } = useLocalSearchParams();
+  const parsedData = JSON.parse(decodeURIComponent(studentData));
+
+  const [student, setStudent] = useState([]);
+
+  useEffect(() => {
+    try {
+      // console.log(parsedData);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
   const [fontsLoaded] = useFonts({
     Sora_100Thin,
     Sora_200ExtraLight,
@@ -26,20 +40,28 @@ export default function Read() {
     <ScreenLayout>
       {/* TITLE */}
       <View className="h-1/5 justify-end items-center">
-        <Text style={{ fontFamily: 'Sora_700Bold' }} className="color-white text-2xl">Student</Text>
-        <Text style={{ fontFamily: 'Sora_300Light' }} className="color-slate-400 text-base"># Subjects</Text>
+        <Text style={{ fontFamily: 'Sora_700Bold' }} className="color-white text-2xl">{parsedData.student}</Text>
+        <Text style={{ fontFamily: 'Sora_300Light' }} className="color-slate-400 text-base">{parsedData.subjectCount} {parsedData.subjectCount === 1 ? 'Asignatura' : 'Asignaturas'}</Text>
       </View>
 
       {/* TABLE */}
       <View className="w-full h-3/5 pt-5 px-2">
-        <ScrollView>
-          <SubjectCard />
-        </ScrollView>
+        {
+          studentData ? (
+            <ScrollView>
+              <SubjectCard />
+            </ScrollView>
 
-        {/* SCROLLVIEW OR THIS... */}
-        {/* <View className="h-full justify-center items-center">
-          <Text style={{ fontFamily: 'Sora_500Medium' }} className="color-white text-lg">Aún no hay asignaturas registradas...</Text>
-        </View> */}
+            // SCROLLVIEW OR THIS...
+            // <View className="h-full justify-center items-center">
+            //   <Text style={{ fontFamily: 'Sora_500Medium' }} className="color-white text-lg">Aún no hay asignaturas registradas...</Text>
+            // </View>
+          ) : (
+            <View className="h-full justify-center items-center">
+              <Text style={{ fontFamily: 'Sora_500Medium' }} className="color-white text-lg">{studentData.student} aún no tiene asignaturas...</Text>
+            </View>
+          )
+        }
       </View>
 
       {/* BUTTONS */}

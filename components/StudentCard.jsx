@@ -22,7 +22,7 @@ export function StudentCard({ data }) {
 
   return (
     <>
-      <Link href="/Read" className="mb-5">
+      <Link href={`/${encodeURIComponent(JSON.stringify(data))}`} className="mb-5">
         <View className="flex-row w-full h-20 justify-between items-center bg-slate-600 px-6 rounded-lg">
           <View>
             <Text style={{ fontFamily: 'Sora_600SemiBold' }} className="color-white text-lg">{ data.student }</Text>
