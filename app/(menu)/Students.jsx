@@ -25,17 +25,18 @@ export default function Students() {
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
           const data = { id: doc.id, ...doc.data() };
+          // console.log(data);
 
           if (groupedStudents[data.student]) {
             groupedStudents[data.student].subjectCount += 1;
           } else {
-            groupedStudents[data.student] = { uid: doc.data().uid, student: doc.data().student, subjectCount: 1 };
+            groupedStudents[data.student] = { id: data.id, uid: data.uid, student: data.student, subjectCount: 1 };
           }
         });
         for (let studentName in groupedStudents) {
           studentList.push(groupedStudents[studentName]);
         }
-        // console.log(studentList);
+        console.log(studentList);
         setStudent(studentList);
       } catch (error) {
         Alert.alert('Error', `${error}`, [
