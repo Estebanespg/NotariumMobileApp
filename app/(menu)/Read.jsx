@@ -45,7 +45,7 @@ export default function Read() {
       {/* BUTTONS */}
       <View className="w-full h-1/5 items-end justify-center">
         <Link asChild href="/CreateSubject">
-          <Pressable className="w-16 h-16 bg-[#6440a5] border-none rounded-full items-center justify-center mb-3">
+          <Pressable className="w-16 h-16 bg-[#6440a5] border-none rounded-2xl items-center justify-center mb-3">
             <FontAwesome name="plus" size={18} color="white" />
           </Pressable>
         </Link>

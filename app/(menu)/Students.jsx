@@ -36,7 +36,7 @@ export default function Students() {
         for (let studentName in groupedStudents) {
           studentList.push(groupedStudents[studentName]);
         }
-        console.log(studentList);
+        // console.log(studentList);
         setStudent(studentList);
       } catch (error) {
         Alert.alert('Error', `${error}`, [
@@ -103,7 +103,7 @@ export default function Students() {
       {/* BUTTONS */}
       <View className="w-full h-1/4 items-end">
         <Link asChild href="/Create">
-          <Pressable className="w-16 h-16 bg-[#6440a5] border-none rounded-full items-center justify-center mb-3">
+          <Pressable className="w-16 h-16 bg-[#6440a5] border-none rounded-2xl items-center justify-center mb-3">
             <FontAwesome name="plus" size={18} color="white" />
           </Pressable>
         </Link>
