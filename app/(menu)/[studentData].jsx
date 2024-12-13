@@ -1,24 +1,41 @@
 import { useFonts } from 'expo-font';
 import { Sora_100Thin, Sora_200ExtraLight, Sora_300Light, Sora_400Regular, Sora_500Medium, Sora_600SemiBold, Sora_700Bold, Sora_800ExtraBold } from '@expo-google-fonts/sora';
-import { View, Text, Pressable, ScrollView } from 'react-native';
+import { View, Text, Pressable, ScrollView, Alert } from 'react-native';
 import { Link, useLocalSearchParams } from 'expo-router';
 import { SubjectCard } from '../../components/SubjectCard';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import ScreenLayout from '../../components/ScreenLayout';
 import { useState, useEffect } from 'react';
+import { useAuth } from '../../context/AuthContext';
+import { db } from '../../firebase';
+import { query, collection, where, getDocs } from 'firebase/firestore';
 
 export default function Read() {
+  const { user } = useAuth();
+
   const { studentData } = useLocalSearchParams();
   const parsedData = JSON.parse(decodeURIComponent(studentData));
 
-  const [student, setStudent] = useState([]);
+  const [studentSubjects, setStudentSubjects] = useState([]);
 
   useEffect(() => {
-    try {
-      // console.log(parsedData);
-    } catch (error) {
-      console.log(error);
+    const fetchSubjects = async () => {
+      const studentInfo = [];
+      const q = query(collection(db, "students"), where("uid", "==", user.uid), where("student", "==", parsedData.student));
+      try {
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+          studentInfo.push({ id: doc.id, ...doc.data() });
+        });
+        // console.log(studentInfo);
+        setStudentSubjects(studentInfo);
+      } catch (error) {
+        Alert.alert('Error', `${error}`, [
+          { text: 'OK', onPress: () => { } },
+        ]);
+      }
     }
+    fetchSubjects();
   }, []);
 
   const [fontsLoaded] = useFonts({
