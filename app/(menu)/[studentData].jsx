@@ -48,7 +48,11 @@ export default function Read() {
         {
           Object.keys(student.subjects || {}).length > 0 ? (
             <ScrollView>
-              <SubjectCard />
+              {
+                student.subjects.map((subjectData, index) => (
+                  <SubjectCard key={index} data={subjectData} />
+                ))
+              }
             </ScrollView>
           ) : (
             <View className="h-full justify-center items-center">
