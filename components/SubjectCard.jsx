@@ -41,7 +41,6 @@ export function SubjectCard({ data }) {
               <Text style={{ fontFamily: 'Sora_400Regular' }} className="w-1/5 color-black text-left">{grade.grade}</Text>
               <Text style={{ fontFamily: 'Sora_400Regular' }} className="w-1/5 color-black text-center">{grade.percentage}%</Text>
             </View>
-
           ))
         }
       </View>
