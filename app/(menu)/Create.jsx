@@ -63,13 +63,12 @@ export default function Create() {
       await addDoc(collection(db, "students"), {
         uid: user.uid,
         student: values.student,
-        subject: values.subject,
-        grades: values.inputs
+        subjects: [{ subject: values.subject, grades: values.inputs }]
       });
       Alert.alert("Registrar Estudiante", "Registro exitoso!");
       router.replace("/Students");
     } catch (error) {
-      Alert.alert('Error', `${error.code}`, [
+      Alert.alert('Error', `${error}`, [
         { text: 'OK', onPress: () => { } },
       ]);
     }

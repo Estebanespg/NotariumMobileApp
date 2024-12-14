@@ -19,24 +19,13 @@ export default function Students() {
   useEffect(() => {
     const fetchStudents = async () => {
       const studentList = [];
-      const groupedStudents = {};
       const q = query(collection(db, "students"), where("uid", "==", user.uid));
       try {
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
-          const data = { id: doc.id, ...doc.data() };
-          // console.log(data);
-
-          if (groupedStudents[data.student]) {
-            groupedStudents[data.student].subjectCount += 1;
-          } else {
-            groupedStudents[data.student] = { id: data.id, uid: data.uid, student: data.student, subjectCount: 1 };
-          }
+          studentList.push({ id: doc.id, ...doc.data() });
         });
-        for (let studentName in groupedStudents) {
-          studentList.push(groupedStudents[studentName]);
-        }
-        // console.log(studentList);
+        // console.log(JSON.stringify(studentList));
         setStudent(studentList);
       } catch (error) {
         Alert.alert('Error', `${error}`, [
