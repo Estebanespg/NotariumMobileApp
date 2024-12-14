@@ -6,34 +6,16 @@ import { SubjectCard } from '../../components/SubjectCard';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import ScreenLayout from '../../components/ScreenLayout';
 import { useState, useEffect } from 'react';
-import { useAuth } from '../../context/AuthContext';
-import { db } from '../../firebase';
-import { query, collection, where, getDocs } from 'firebase/firestore';
 
 export default function Read() {
-  const { user } = useAuth();
-
   const { studentData } = useLocalSearchParams();
   const parsedData = JSON.parse(decodeURIComponent(studentData));
-
-  const [studentSubjects, setStudentSubjects] = useState([]);
+  const [student, setStudent] = useState({});
 
   useEffect(() => {
-    const fetchSubjects = async () => {
-      const studentInfo = [];
-      const q = query(collection(db, "students"), where("uid", "==", user.uid), where("student", "==", parsedData.student));
-      try {
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {
-          studentInfo.push({ id: doc.id, ...doc.data() });
-        });
-        // console.log(studentInfo);
-        setStudentSubjects(studentInfo);
-      } catch (error) {
-        Alert.alert('Error', `${error}`, [
-          { text: 'OK', onPress: () => { } },
-        ]);
-      }
+    const fetchSubjects = () => {
+      // console.log(JSON.stringify(parsedData));
+      setStudent(parsedData);
     }
     fetchSubjects();
   }, []);
@@ -57,25 +39,20 @@ export default function Read() {
     <ScreenLayout>
       {/* TITLE */}
       <View className="h-1/5 justify-end items-center">
-        <Text style={{ fontFamily: 'Sora_700Bold' }} className="color-white text-2xl">{parsedData.student}</Text>
-        <Text style={{ fontFamily: 'Sora_300Light' }} className="color-slate-400 text-base">{parsedData.subjectCount} {parsedData.subjectCount === 1 ? 'Asignatura' : 'Asignaturas'}</Text>
+        <Text style={{ fontFamily: 'Sora_700Bold' }} className="color-white text-2xl">{student.student}</Text>
+        <Text style={{ fontFamily: 'Sora_300Light' }} className="color-slate-400 text-base">{Object.keys(student.subjects || {}).length} {Object.keys(student.subjects || {}).length === 1 ? 'Asignatura' : 'Asignaturas'}</Text>
       </View>
 
       {/* TABLE */}
       <View className="w-full h-3/5 pt-5 px-2">
         {
-          studentData ? (
+          Object.keys(student.subjects || {}).length > 0 ? (
             <ScrollView>
               <SubjectCard />
             </ScrollView>
-
-            // SCROLLVIEW OR THIS...
-            // <View className="h-full justify-center items-center">
-            //   <Text style={{ fontFamily: 'Sora_500Medium' }} className="color-white text-lg">Aún no hay asignaturas registradas...</Text>
-            // </View>
           ) : (
             <View className="h-full justify-center items-center">
-              <Text style={{ fontFamily: 'Sora_500Medium' }} className="color-white text-lg">{studentData.student} aún no tiene asignaturas...</Text>
+              <Text style={{ fontFamily: 'Sora_500Medium' }} className="color-white text-lg">{student.student} aún no tiene asignaturas...</Text>
             </View>
           )
         }
