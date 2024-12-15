@@ -3,8 +3,43 @@ import { Sora_100Thin, Sora_200ExtraLight, Sora_300Light, Sora_400Regular, Sora_
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { View, Text } from 'react-native';
 import { Link } from 'expo-router';
+import { useEffect, useState } from 'react';
 
 export function SubjectCard({ data }) {
+  const [subjectInfo, setSubjectInfo] = useState({});
+  useEffect(() => {
+    const gradeAvgAndTotalPerc = () => {
+      var state = "";
+      var color;
+      var gradeAverage = 0;
+      var totalPercentage = 0;
+
+      for (let i = 0; i < data.grades.length; i++) {
+        const grade = parseFloat(data.grades[i].grade);
+        const percentage = ( data.grades[i].percentage / 100 );
+
+        gradeAverage += (grade * percentage);
+        totalPercentage += percentage * 100;
+      }
+
+      if ( totalPercentage == 100 & gradeAverage >= 3 ){
+        state = "✔ Aprobado";
+        color = true;
+      } else if ( totalPercentage == 100 & gradeAverage < 3 ){
+        state = "❌ Reprobado";
+        color = false;
+      } else if ( totalPercentage < 100 & gradeAverage >= 3 ){
+        state = "Aprobando...";
+        color = true;
+      } else if ( totalPercentage < 100 & gradeAverage < 3 ){
+        state = "Reprobando...";
+        color = false;
+      }
+      setSubjectInfo({ state: state, color: color, gradeAverage: gradeAverage, totalPercentage: totalPercentage })
+    }
+    gradeAvgAndTotalPerc();
+  }, []);
+
   const [fontsLoaded] = useFonts({
     Sora_100Thin,
     Sora_200ExtraLight,
@@ -38,7 +73,7 @@ export function SubjectCard({ data }) {
           data.grades.map((grade, index) => (
             <View key={index} className="w-full flex-row justify-between mt-5">
               <Text style={{ fontFamily: 'Sora_400Regular' }} className="w-3/5 color-black text-left">{grade.parameter}</Text>
-              <Text style={{ fontFamily: 'Sora_400Regular' }} className="w-1/5 color-black text-left">{grade.grade}</Text>
+              <Text style={{ fontFamily: 'Sora_400Regular' }} className="w-1/5 color-black text-left">{parseFloat(grade.grade).toFixed(1)}</Text>
               <Text style={{ fontFamily: 'Sora_400Regular' }} className="w-1/5 color-black text-center">{grade.percentage}%</Text>
             </View>
           ))
@@ -46,9 +81,9 @@ export function SubjectCard({ data }) {
       </View>
       <View className="w-full h-auto items-center bg-slate-600 mb-8 pr-4 pb-4 pl-4 rounded-b-lg">
         <View className="w-full flex-row justify-between mt-5">
-          <Text style={{ fontFamily: 'Sora_700Bold' }} className="w-3/5 color-emerald-500 text-left">State</Text>
-          <Text style={{ fontFamily: 'Sora_700Bold' }} className="w-1/5 color-emerald-500 text-left">Grade</Text>
-          <Text style={{ fontFamily: 'Sora_700Bold' }} className="w-1/5 color-emerald-500 text-center">%</Text>
+          <Text style={{ fontFamily: 'Sora_700Bold', color: subjectInfo.color ? '#10B981' : '#EF4444' }} className={`w-3/5 text-left`}>{subjectInfo.state}</Text>
+          <Text style={{ fontFamily: 'Sora_700Bold', color: subjectInfo.color ? '#10B981' : '#EF4444' }} className={`w-1/5 text-left`}>{parseFloat(subjectInfo.gradeAverage).toFixed(1)}</Text>
+          <Text style={{ fontFamily: 'Sora_700Bold', color: subjectInfo.color ? '#10B981' : '#EF4444' }} className={`w-1/5 text-center`}>{subjectInfo.totalPercentage}%</Text>
         </View>
       </View>
     </>
