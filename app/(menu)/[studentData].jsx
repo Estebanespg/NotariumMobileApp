@@ -50,7 +50,7 @@ export default function Read() {
             <ScrollView>
               {
                 student.subjects.map((subjectData, index) => (
-                  <SubjectCard key={index} data={subjectData} />
+                  <SubjectCard key={index} data={subjectData} userId={student.id}/>
                 ))
               }
             </ScrollView>

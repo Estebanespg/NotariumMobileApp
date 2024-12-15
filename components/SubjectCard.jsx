@@ -1,11 +1,13 @@
 import { useFonts } from 'expo-font';
 import { Sora_100Thin, Sora_200ExtraLight, Sora_300Light, Sora_400Regular, Sora_500Medium, Sora_600SemiBold, Sora_700Bold, Sora_800ExtraBold } from '@expo-google-fonts/sora';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { View, Text } from 'react-native';
-import { Link } from 'expo-router';
+import { View, Text, Pressable, Alert } from 'react-native';
+import { Link, router } from 'expo-router';
 import { useEffect, useState } from 'react';
+import { db } from '../firebase'
+import { updateDoc, doc, arrayRemove } from 'firebase/firestore';
 
-export function SubjectCard({ data }) {
+export function SubjectCard({ data, userId }) {
   const [subjectInfo, setSubjectInfo] = useState({});
   useEffect(() => {
     const gradeAvgAndTotalPerc = () => {
@@ -16,22 +18,22 @@ export function SubjectCard({ data }) {
 
       for (let i = 0; i < data.grades.length; i++) {
         const grade = parseFloat(data.grades[i].grade);
-        const percentage = ( data.grades[i].percentage / 100 );
+        const percentage = (data.grades[i].percentage / 100);
 
         gradeAverage += (grade * percentage);
         totalPercentage += percentage * 100;
       }
 
-      if ( totalPercentage == 100 & gradeAverage >= 3 ){
+      if (totalPercentage == 100 & gradeAverage >= 3) {
         state = "✔ Aprobado";
         color = true;
-      } else if ( totalPercentage == 100 & gradeAverage < 3 ){
+      } else if (totalPercentage == 100 & gradeAverage < 3) {
         state = "❌ Reprobado";
         color = false;
-      } else if ( totalPercentage < 100 & gradeAverage >= 3 ){
+      } else if (totalPercentage < 100 & gradeAverage >= 3) {
         state = "Aprobando...";
         color = true;
-      } else if ( totalPercentage < 100 & gradeAverage < 3 ){
+      } else if (totalPercentage < 100 & gradeAverage < 3) {
         state = "Reprobando...";
         color = false;
       }
@@ -55,6 +57,19 @@ export function SubjectCard({ data }) {
     return <Text>Cargando fuentes...</Text>;
   }
 
+  const handleDeleteSubject = async () => {
+    try {
+      await updateDoc(doc(db, "students", userId), {
+        subjects: arrayRemove({ subject: data.subject, grades: data.grades })
+      });
+      router.replace("/Students");
+    } catch (error) {
+      Alert.alert('Error', `${error}`, [
+        { text: 'OK', onPress: () => { } },
+      ]);
+    }
+  }
+
   return (
     <>
       <View className="flex-row w-full h-14 justify-center items-center bg-slate-600 p-2 rounded-t-lg">
@@ -65,7 +80,9 @@ export function SubjectCard({ data }) {
           <Link asChild href="/Update">
             <FontAwesome name="pencil" size={26} color="#fca130" />
           </Link>
-          <FontAwesome className="ml-5" name="trash" size={26} color="#f93e3e" />
+          <Pressable onPress={handleDeleteSubject}>
+            <FontAwesome className="ml-5" name="trash" size={26} color="#f93e3e" />
+          </Pressable>
         </View>
       </View>
       <View className="w-full h-auto items-center bg-slate-400 pr-4 pb-4 pl-4">
