@@ -64,7 +64,7 @@ export default function Read() {
 
       {/* BUTTONS */}
       <View className="w-full h-1/5 items-end justify-center px-2">
-        <Link asChild href="/CreateSubject">
+        <Link asChild href={`/CreateSubject?studentId=${encodeURIComponent(student.id)}`}>
           <Pressable className="w-16 h-16 bg-[#6440a5] border-none rounded-2xl items-center justify-center mb-12">
             <FontAwesome name="plus" size={18} color="white" />
           </Pressable>

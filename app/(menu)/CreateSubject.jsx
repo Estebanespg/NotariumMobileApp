@@ -2,13 +2,18 @@ import { useState } from 'react';
 import { useFonts } from 'expo-font';
 import { Sora_100Thin, Sora_200ExtraLight, Sora_300Light, Sora_400Regular, Sora_500Medium, Sora_600SemiBold, Sora_700Bold, Sora_800ExtraBold } from '@expo-google-fonts/sora';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { View, Text, TextInput, Pressable, ScrollView } from 'react-native';
+import { View, Text, TextInput, Pressable, ScrollView, Alert } from 'react-native';
 import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Inputs } from '../../components/Inputs';
 import ScreenLayout from '../../components/ScreenLayout';
+import { db } from '../../firebase'
+import { updateDoc, doc, arrayUnion } from 'firebase/firestore';
+import { useLocalSearchParams, router } from 'expo-router';
 
 export default function CreateSubject() {
+  const { studentId } = useLocalSearchParams();
+
   const [fontsLoaded] = useFonts({
     Sora_100Thin,
     Sora_200ExtraLight,
@@ -25,7 +30,6 @@ export default function CreateSubject() {
   }
 
   const validationSchema = Yup.object().shape({
-    student: Yup.string().required('El nombre del estudiante es obligatorio'),
     subject: Yup.string().required('La asignatura es obligatoria'),
     inputs: Yup.array().of(
       Yup.object().shape({
@@ -45,6 +49,27 @@ export default function CreateSubject() {
   // Estado para manejar entradas dinámicas
   const [dynamicInputs, setDynamicInputs] = useState([{ id: 1 }]);
 
+  const createSubject = async (values) => {
+    const totalPercentage = values.inputs.reduce((sum, input) => sum + parseFloat(input.percentage), 0);
+
+    if (totalPercentage > 100) {
+      Alert.alert("Error en los datos", "La suma de los porcentajes no puede exceder el 100%");
+      return;
+    }
+
+      try {
+        await updateDoc(doc(db, "students", studentId), {
+          subjects: arrayUnion({ subject: values.subject, grades: values.inputs })
+        });
+        Alert.alert("Agregar Asignatura", "Registro exitoso!");
+        router.replace("/Students");
+      } catch (error) {
+        Alert.alert('Error', `${error}`, [
+          { text: 'OK', onPress: () => { } },
+        ]);
+      }
+  }
+
   return (
     <ScreenLayout>
       {/* TITLE */}
@@ -57,9 +82,7 @@ export default function CreateSubject() {
           inputs: [{ grade: '', percentage: '', parameter: '' }],
         }}
         validationSchema={validationSchema}
-        onSubmit={(values) => {
-          console.log('Formulario enviado:', values);
-        }}
+        onSubmit={createSubject}
       >
         {({ handleChange, handleBlur, handleSubmit, values, isValid, setFieldValue }) => {
           const addInputs = () => {
