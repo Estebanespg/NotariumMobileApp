@@ -42,7 +42,14 @@ export default function SignUp() {
   const handleSignUp = async (values) => {
     try {
       await createUserWithEmailAndPassword(auth, values.email, values.password);
-      Alert.alert("Registrarse", "Registro exitoso!");
+      Alert.alert("Registrarse", "Registro exitoso!", [
+        {
+          text: 'OK',
+          onPress: async () => { }
+        },
+      ], {
+        cancelable: true
+      });
       router.replace("/Students");
     } catch (error) {
       if (error.code === 'auth/email-already-in-use') {

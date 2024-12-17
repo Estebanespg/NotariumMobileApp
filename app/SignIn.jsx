@@ -38,7 +38,14 @@ export default function SignIn() {
   const handleSignIn = async (values) => {
     try {
       await signInWithEmailAndPassword(auth, values.email, values.password);
-      Alert.alert("Iniciar Sesión", "Inicio de sesión exitoso!");
+      Alert.alert("Iniciar Sesión", "Inicio de sesión exitoso!", [
+        {
+          text: 'OK',
+          onPress: async () => { }
+        },
+      ], {
+        cancelable: true
+      });
       router.replace("/Students");
     } catch (error) {
       if (error.code === 'auth/invalid-credential') {
