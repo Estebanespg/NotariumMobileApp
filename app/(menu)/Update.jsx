@@ -60,30 +60,39 @@ export default function Update() {
     const totalPercentage = values.inputs.reduce((sum, input) => sum + parseFloat(input.percentage), 0);
 
     if (totalPercentage > 100) {
-      Alert.alert("Error en los datos", "La suma de los porcentajes no puede exceder el 100%");
+      Alert.alert("Error en los datos", "La suma de los porcentajes no puede exceder el 100%", [
+        {
+          text: 'OK',
+          onPress: async () => { }
+        },
+      ], {
+        cancelable: true
+      });
       return;
     }
 
     try {
       const studentDoc = doc(db, "students", parsedData.userId);
       const studentSnapshot = await getDoc(studentDoc);
+      const data = studentSnapshot.data();
 
-      if (studentSnapshot.exists()) {
-        const data = studentSnapshot.data();
+      const updatedSubjects = data.subjects.map((subject) =>
+        subject.subject === parsedData.data.subject
+          ? { subject: values.subject, grades: values.inputs }
+          : subject
+      );
 
-        const updatedSubjects = data.subjects.map((subject) =>
-          subject.subject === parsedData.data.subject
-            ? { subject: values.subject, grades: values.inputs }
-            : subject
-        );
+      await updateDoc(studentDoc, { subjects: updatedSubjects });
 
-        await updateDoc(studentDoc, { subjects: updatedSubjects });
-
-        Alert.alert("Editar Asignatura", "Registro actualizado exitosamente!");
-        router.replace("/Students");
-      } else {
-        Alert.alert("Error", "No se encontró el estudiante.");
-      }
+      Alert.alert("Editar Asignatura", "Registro actualizado exitosamente!", [
+        {
+          text: 'OK',
+          onPress: async () => { }
+        },
+      ], {
+        cancelable: true
+      });
+      router.replace("/Students");
     } catch (error) {
       Alert.alert('Error', `${error}`, [
         { text: 'OK', onPress: () => { } },
