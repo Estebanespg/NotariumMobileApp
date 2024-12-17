@@ -77,7 +77,7 @@ export function SubjectCard({ data, userId }) {
           <Text style={{ fontFamily: 'Sora_600SemiBold' }} className="color-white text-center text-lg mr-5">{data.subject}</Text>
         </View>
         <View className="flex-row w-3/12 justify-center">
-          <Link asChild href={`/Update?studentData=${encodeURIComponent(JSON.stringify(data))}`}>
+          <Link asChild href={`/Update?subjectData=${encodeURIComponent(JSON.stringify(data))}`}>
             <FontAwesome name="pencil" size={26} color="#fca130" />
           </Link>
           <Pressable onPress={handleDeleteSubject}>

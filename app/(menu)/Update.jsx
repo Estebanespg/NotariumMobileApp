@@ -12,14 +12,14 @@ import { updateDoc, doc, arrayUnion } from 'firebase/firestore';
 import { useLocalSearchParams, router } from 'expo-router';
 
 export default function Update() {
-  const { studentData } = useLocalSearchParams();
-  const parsedData = JSON.parse(decodeURIComponent(studentData));
-  const [student, setStudent] = useState({});
+  const { subjectData } = useLocalSearchParams();
+  const parsedData = JSON.parse(decodeURIComponent(subjectData));
+  const [subject, setSubject] = useState({});
 
   useEffect(() => {
     const fetchSubjects = () => {
       // console.log(JSON.stringify(parsedData));
-      setStudent(parsedData);
+      setSubject(parsedData);
     }
     fetchSubjects();
   }, []);
@@ -57,9 +57,6 @@ export default function Update() {
     ),
   });
 
-  // Estado para manejar entradas dinámicas
-  const [dynamicInputs, setDynamicInputs] = useState([{ id: 1 }]);
-
   return (
     <ScreenLayout>
       {/* TITLE */}
@@ -67,9 +64,10 @@ export default function Update() {
         <Text style={{ fontFamily: 'Sora_700Bold' }} className="color-white text-2xl">Editar Asignatura</Text>
       </View>
       <Formik
+        enableReinitialize
         initialValues={{
-          subject: '',
-          inputs: [{ grade: '', percentage: '', parameter: '' }],
+          subject: subject.subject || '',
+          inputs: subject.grades || [{ grade: '', percentage: '', parameter: '' }],
         }}
         validationSchema={validationSchema}
         onSubmit={(values) => {
@@ -80,7 +78,6 @@ export default function Update() {
           const addInputs = () => {
             const newInput = { grade: '', percentage: '', parameter: '' };
             setFieldValue('inputs', [...values.inputs, newInput]);
-            setDynamicInputs([...dynamicInputs, { id: dynamicInputs.length + 1 }]);
           };
 
           return (
@@ -111,12 +108,12 @@ export default function Update() {
                   </View>
 
                   {/* DYNAMIC INPUTS */}
-                  {dynamicInputs.map((input, index) => (
-                    <View key={input.id} className="mb-2">
+                  {values.inputs.map((input, index) => (
+                    <View key={index} className="mb-2">
                       <Inputs
                         handleChange={(field) => handleChange(`inputs[${index}].${field}`)}
                         handleBlur={(field) => handleBlur(`inputs[${index}].${field}`)}
-                        values={values.inputs[index] || { grade: '', percentage: '', parameter: '' }}
+                        values={values.inputs[index]}
                       />
 
                       {/* ERROR MSG */}
