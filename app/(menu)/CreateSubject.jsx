@@ -57,17 +57,17 @@ export default function CreateSubject() {
       return;
     }
 
-      try {
-        await updateDoc(doc(db, "students", studentId), {
-          subjects: arrayUnion({ subject: values.subject, grades: values.inputs })
-        });
-        Alert.alert("Agregar Asignatura", "Registro exitoso!");
-        router.replace("/Students");
-      } catch (error) {
-        Alert.alert('Error', `${error}`, [
-          { text: 'OK', onPress: () => { } },
-        ]);
-      }
+    try {
+      await updateDoc(doc(db, "students", studentId), {
+        subjects: arrayUnion({ subject: values.subject, grades: values.inputs })
+      });
+      Alert.alert("Agregar Asignatura", "Registro exitoso!");
+      router.replace("/Students");
+    } catch (error) {
+      Alert.alert('Error', `${error}`, [
+        { text: 'OK', onPress: () => { } },
+      ]);
+    }
   }
 
   return (

@@ -8,7 +8,7 @@ import * as Yup from 'yup';
 import { Inputs } from '../../components/Inputs';
 import ScreenLayout from '../../components/ScreenLayout';
 import { db } from '../../firebase';
-import { updateDoc, doc, arrayUnion } from 'firebase/firestore';
+import { updateDoc, doc, getDoc } from 'firebase/firestore';
 import { useLocalSearchParams, router } from 'expo-router';
 
 export default function Update() {
@@ -19,7 +19,7 @@ export default function Update() {
   useEffect(() => {
     const fetchSubjects = () => {
       // console.log(JSON.stringify(parsedData));
-      setSubject(parsedData);
+      setSubject(parsedData.data);
     }
     fetchSubjects();
   }, []);
@@ -40,7 +40,6 @@ export default function Update() {
   }
 
   const validationSchema = Yup.object().shape({
-    student: Yup.string().required('El nombre del estudiante es obligatorio'),
     subject: Yup.string().required('La asignatura es obligatoria'),
     inputs: Yup.array().of(
       Yup.object().shape({
@@ -57,6 +56,41 @@ export default function Update() {
     ),
   });
 
+  const updateSubject = async (values) => {
+    const totalPercentage = values.inputs.reduce((sum, input) => sum + parseFloat(input.percentage), 0);
+
+    if (totalPercentage > 100) {
+      Alert.alert("Error en los datos", "La suma de los porcentajes no puede exceder el 100%");
+      return;
+    }
+
+    try {
+      const studentDoc = doc(db, "students", parsedData.userId);
+      const studentSnapshot = await getDoc(studentDoc);
+
+      if (studentSnapshot.exists()) {
+        const data = studentSnapshot.data();
+
+        const updatedSubjects = data.subjects.map((subject) =>
+          subject.subject === parsedData.data.subject
+            ? { subject: values.subject, grades: values.inputs }
+            : subject
+        );
+
+        await updateDoc(studentDoc, { subjects: updatedSubjects });
+
+        Alert.alert("Editar Asignatura", "Registro actualizado exitosamente!");
+        router.replace("/Students");
+      } else {
+        Alert.alert("Error", "No se encontró el estudiante.");
+      }
+    } catch (error) {
+      Alert.alert('Error', `${error}`, [
+        { text: 'OK', onPress: () => { } },
+      ]);
+    }
+  };
+
   return (
     <ScreenLayout>
       {/* TITLE */}
@@ -70,9 +104,7 @@ export default function Update() {
           inputs: subject.grades || [{ grade: '', percentage: '', parameter: '' }],
         }}
         validationSchema={validationSchema}
-        onSubmit={(values) => {
-          console.log('Formulario enviado:', values);
-        }}
+        onSubmit={updateSubject}
       >
         {({ handleChange, handleBlur, handleSubmit, values, isValid, setFieldValue }) => {
           const addInputs = () => {
@@ -113,7 +145,7 @@ export default function Update() {
                       <Inputs
                         handleChange={(field) => handleChange(`inputs[${index}].${field}`)}
                         handleBlur={(field) => handleBlur(`inputs[${index}].${field}`)}
-                        values={values.inputs[index]}
+                        values={input}
                       />
 
                       {/* ERROR MSG */}
