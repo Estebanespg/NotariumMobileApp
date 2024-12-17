@@ -53,7 +53,14 @@ export default function CreateSubject() {
     const totalPercentage = values.inputs.reduce((sum, input) => sum + parseFloat(input.percentage), 0);
 
     if (totalPercentage > 100) {
-      Alert.alert("Error en los datos", "La suma de los porcentajes no puede exceder el 100%");
+      Alert.alert("Error en los datos", "La suma de los porcentajes no puede exceder el 100%", [
+        {
+          text: 'OK',
+          onPress: async () => { }
+        },
+      ], {
+        cancelable: true
+      });
       return;
     }
 
@@ -61,7 +68,14 @@ export default function CreateSubject() {
       await updateDoc(doc(db, "students", studentId), {
         subjects: arrayUnion({ subject: values.subject, grades: values.inputs })
       });
-      Alert.alert("Agregar Asignatura", "Registro exitoso!");
+      Alert.alert("Agregar Asignatura", "Registro exitoso!", [
+        {
+          text: 'OK',
+          onPress: async () => { }
+        },
+      ], {
+        cancelable: true
+      });
       router.replace("/Students");
     } catch (error) {
       Alert.alert('Error', `${error}`, [

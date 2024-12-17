@@ -55,17 +55,31 @@ export default function Create() {
     const totalPercentage = values.inputs.reduce((sum, input) => sum + parseFloat(input.percentage), 0);
 
     if (totalPercentage > 100) {
-      Alert.alert("Error en los datos", "La suma de los porcentajes no puede exceder el 100%");
+      Alert.alert("Error en los datos", "La suma de los porcentajes no puede exceder el 100%", [
+        {
+          text: 'OK',
+          onPress: async () => { }
+        },
+      ], {
+        cancelable: true
+      });
       return;
     }
-    
+
     try {
       await addDoc(collection(db, "students"), {
         uid: user.uid,
         student: values.student,
         subjects: [{ subject: values.subject, grades: values.inputs }]
       });
-      Alert.alert("Registrar Estudiante", "Registro exitoso!");
+      Alert.alert("Registrar Estudiante", "Registro exitoso!", [
+        {
+          text: 'OK',
+          onPress: async () => { }
+        },
+      ], {
+        cancelable: true
+      });
       router.replace("/Students");
     } catch (error) {
       Alert.alert('Error', `${error}`, [
