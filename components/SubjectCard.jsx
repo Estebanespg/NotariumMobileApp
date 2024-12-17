@@ -59,10 +59,24 @@ export function SubjectCard({ data, userId }) {
 
   const handleDeleteSubject = async () => {
     try {
-      await updateDoc(doc(db, "students", userId), {
-        subjects: arrayRemove({ subject: data.subject, grades: data.grades })
+      Alert.alert('Eliminar Asignatura', `¿Desea eliminar la asignatura: ${data.subject}?`,
+        [
+          {
+            text: 'Cancelar',
+            onPress: () => { }
+          },
+          {
+            text: 'Aceptar',
+            onPress: async () => {
+              await updateDoc(doc(db, "students", userId), {
+                subjects: arrayRemove({ subject: data.subject, grades: data.grades })
+              });
+              router.replace("/Students");
+            }
+          },
+        ], {
+        cancelable: true
       });
-      router.replace("/Students");
     } catch (error) {
       Alert.alert('Error', `${error}`, [
         { text: 'OK', onPress: () => { } },
@@ -77,7 +91,7 @@ export function SubjectCard({ data, userId }) {
           <Text style={{ fontFamily: 'Sora_600SemiBold' }} className="color-white text-center text-lg mr-5">{data.subject}</Text>
         </View>
         <View className="flex-row w-3/12 justify-center">
-          <Link asChild href={`/Update?subjectData=${encodeURIComponent(JSON.stringify({data, userId}))}`}>
+          <Link asChild href={`/Update?subjectData=${encodeURIComponent(JSON.stringify({ data, userId }))}`}>
             <FontAwesome name="pencil" size={26} color="#fca130" />
           </Link>
           <Pressable onPress={handleDeleteSubject}>

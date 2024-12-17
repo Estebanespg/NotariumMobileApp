@@ -22,10 +22,24 @@ export function StudentCard({ data }) {
     return <Text>Cargando fuentes...</Text>;
   }
 
-  const handleDeleteStudent = async () => {
+  const handleDeleteStudent = () => {
     try {
-      await deleteDoc(doc(db, "students", data.id));
-      router.replace("/Students");
+      Alert.alert('Eliminar Estudiante', `¿Desea eliminar al estudiante: ${data.student}?`,
+        [
+          {
+            text: 'Cancelar',
+            onPress: () => { }
+          },
+          {
+            text: 'Aceptar',
+            onPress: async () => {
+              await deleteDoc(doc(db, "students", data.id));
+              router.replace("/Students");
+            }
+          },
+        ], {
+          cancelable: true
+      });
     } catch (error) {
       Alert.alert('Error', `${error}`, [
         { text: 'OK', onPress: () => { } },
