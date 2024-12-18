@@ -1,5 +1,3 @@
-import { useFonts } from 'expo-font';
-import { Sora_100Thin, Sora_200ExtraLight, Sora_300Light, Sora_400Regular, Sora_500Medium, Sora_600SemiBold, Sora_700Bold, Sora_800ExtraBold } from '@expo-google-fonts/sora';
 import { View, Text, Pressable, ScrollView } from 'react-native';
 import { Link, useLocalSearchParams } from 'expo-router';
 import { SubjectCard } from '../../components/SubjectCard';
@@ -19,21 +17,6 @@ export default function Read() {
     }
     fetchSubjects();
   }, []);
-
-  const [fontsLoaded] = useFonts({
-    Sora_100Thin,
-    Sora_200ExtraLight,
-    Sora_300Light,
-    Sora_400Regular,
-    Sora_500Medium,
-    Sora_600SemiBold,
-    Sora_700Bold,
-    Sora_800ExtraBold,
-  });
-
-  if (!fontsLoaded) {
-    return <ScreenLayout><Text className="color-white">Cargando fuentes...</Text></ScreenLayout>;
-  }
 
   return (
     <ScreenLayout>

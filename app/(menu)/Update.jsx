@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useFonts } from 'expo-font';
-import { Sora_100Thin, Sora_200ExtraLight, Sora_300Light, Sora_400Regular, Sora_500Medium, Sora_600SemiBold, Sora_700Bold, Sora_800ExtraBold } from '@expo-google-fonts/sora';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { View, Text, TextInput, Pressable, ScrollView, Alert } from 'react-native';
 import { Formik, ErrorMessage } from 'formik';
@@ -23,21 +21,6 @@ export default function Update() {
     }
     fetchSubjects();
   }, []);
-
-  const [fontsLoaded] = useFonts({
-    Sora_100Thin,
-    Sora_200ExtraLight,
-    Sora_300Light,
-    Sora_400Regular,
-    Sora_500Medium,
-    Sora_600SemiBold,
-    Sora_700Bold,
-    Sora_800ExtraBold,
-  });
-
-  if (!fontsLoaded) {
-    return <ScreenLayout><Text className="color-white">Cargando fuentes...</Text></ScreenLayout>;
-  }
 
   const validationSchema = Yup.object().shape({
     subject: Yup.string().required('La asignatura es obligatoria'),
