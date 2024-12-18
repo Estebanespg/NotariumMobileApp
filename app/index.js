@@ -1,7 +1,8 @@
 import { useAuth } from '../context/AuthContext';
 import { router } from 'expo-router';
-import { Text } from 'react-native';
+import { ActivityIndicator } from 'react-native';
 import { useEffect } from 'react';
+import ScreenLayout from '../components/ScreenLayout';
 
 export default function Index() {
   const { user, loading } = useAuth();
@@ -17,7 +18,7 @@ export default function Index() {
   }, [loading, user]);
 
   if (loading) {
-    return <Text style={{ fontFamily: 'Sora_400Regular' }} className="color-white">Cargando...</Text>;
+    return <ScreenLayout><ActivityIndicator color={"#fff"} size={"large"} /></ScreenLayout>;
   }
 
   return null;
