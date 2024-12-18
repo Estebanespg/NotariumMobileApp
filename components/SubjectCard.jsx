@@ -1,5 +1,3 @@
-import { useFonts } from 'expo-font';
-import { Sora_100Thin, Sora_200ExtraLight, Sora_300Light, Sora_400Regular, Sora_500Medium, Sora_600SemiBold, Sora_700Bold, Sora_800ExtraBold } from '@expo-google-fonts/sora';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { View, Text, Pressable, Alert } from 'react-native';
 import { Link, router } from 'expo-router';
@@ -41,21 +39,6 @@ export function SubjectCard({ data, userId }) {
     }
     gradeAvgAndTotalPerc();
   }, []);
-
-  const [fontsLoaded] = useFonts({
-    Sora_100Thin,
-    Sora_200ExtraLight,
-    Sora_300Light,
-    Sora_400Regular,
-    Sora_500Medium,
-    Sora_600SemiBold,
-    Sora_700Bold,
-    Sora_800ExtraBold,
-  });
-
-  if (!fontsLoaded) {
-    return <Text>Cargando fuentes...</Text>;
-  }
 
   const handleDeleteSubject = async () => {
     try {
@@ -114,7 +97,7 @@ export function SubjectCard({ data, userId }) {
         <View className="w-full flex-row justify-between mt-5">
           <Text style={{ fontFamily: 'Sora_700Bold', color: subjectInfo.color ? '#10B981' : '#EF4444' }} className={`w-3/5 text-left`}>{subjectInfo.state}</Text>
           <Text style={{ fontFamily: 'Sora_700Bold', color: subjectInfo.color ? '#10B981' : '#EF4444' }} className={`w-1/5 text-left`}>{parseFloat(subjectInfo.gradeAverage).toFixed(1)}</Text>
-          <Text style={{ fontFamily: 'Sora_700Bold', color: subjectInfo.color ? '#10B981' : '#EF4444' }} className={`w-1/5 text-center`}>{subjectInfo.totalPercentage}%</Text>
+          <Text style={{ fontFamily: 'Sora_700Bold', color: subjectInfo.color ? '#10B981' : '#EF4444' }} className={`w-1/5 text-center`}>{parseFloat(subjectInfo.totalPercentage).toFixed(0)}%</Text>
         </View>
       </View>
     </>
