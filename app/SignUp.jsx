@@ -1,5 +1,3 @@
-import { useFonts } from 'expo-font';
-import { Sora_100Thin, Sora_200ExtraLight, Sora_300Light, Sora_400Regular, Sora_500Medium, Sora_600SemiBold, Sora_700Bold, Sora_800ExtraBold } from '@expo-google-fonts/sora';
 import { View, Text, Image, Pressable, TextInput, Alert } from 'react-native';
 import { ErrorMessage, Formik } from 'formik';
 import * as Yup from 'yup';
@@ -11,21 +9,6 @@ import { auth } from '../firebase';
 import ScreenLayout from '../components/ScreenLayout';
 
 export default function SignUp() {
-  const [fontsLoaded] = useFonts({
-    Sora_100Thin,
-    Sora_200ExtraLight,
-    Sora_300Light,
-    Sora_400Regular,
-    Sora_500Medium,
-    Sora_600SemiBold,
-    Sora_700Bold,
-    Sora_800ExtraBold,
-  });
-
-  if (!fontsLoaded) {
-    return <ScreenLayout><Text className="color-white">Cargando fuentes...</Text></ScreenLayout>;
-  }
-
   // VALIDATION
   const SignUpSchema = Yup.object().shape({
     email: Yup.string()

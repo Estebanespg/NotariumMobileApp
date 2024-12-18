@@ -1,6 +1,6 @@
 import { useFonts } from 'expo-font';
 import { Sora_100Thin, Sora_200ExtraLight, Sora_300Light, Sora_400Regular, Sora_500Medium, Sora_600SemiBold, Sora_700Bold, Sora_800ExtraBold } from '@expo-google-fonts/sora';
-import { View, Text, Image, Pressable, TextInput, Alert } from 'react-native';
+import { View, Text, Image, Pressable, TextInput, Alert, ActivityIndicator } from 'react-native';
 import { ErrorMessage, Formik } from 'formik';
 import * as Yup from 'yup';
 import icon from '../assets/ic_notarium_light_white.png';
@@ -23,7 +23,7 @@ export default function SignIn() {
   });
 
   if (!fontsLoaded) {
-    return <ScreenLayout><Text className="color-white">Cargando fuentes...</Text></ScreenLayout>;
+    return <ScreenLayout><ActivityIndicator color={"#fff"} size={"large"} /></ScreenLayout>;
   }
 
   // VALIDATION
