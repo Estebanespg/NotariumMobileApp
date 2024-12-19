@@ -9,6 +9,7 @@ import { Link, router } from 'expo-router';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
 import ScreenLayout from '../components/ScreenLayout';
+import { Toast } from 'toastify-react-native'
 
 export default function SignIn() {
   const [fontsLoaded] = useFonts({
@@ -38,14 +39,16 @@ export default function SignIn() {
   const handleSignIn = async (values) => {
     try {
       await signInWithEmailAndPassword(auth, values.email, values.password);
-      Alert.alert("Iniciar Sesión", "Inicio de sesión exitoso!", [
-        {
-          text: 'OK',
-          onPress: async () => { }
-        },
-      ], {
-        cancelable: true
-      });
+      // Toast.success('Inicio de sesión exitoso!');
+      Toast.success('Has iniciado sesión exitosamente!');
+      // Alert.alert("Iniciar Sesión", "Inicio de sesión exitoso!", [
+      //   {
+      //     text: 'OK',
+      //     onPress: async () => { }
+      //   },
+      // ], {
+      //   cancelable: true
+      // });
       router.replace("/Students");
     } catch (error) {
       if (error.code === 'auth/invalid-credential') {
