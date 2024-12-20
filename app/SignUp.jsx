@@ -1,4 +1,4 @@
-import { View, Text, Image, Pressable, TextInput, Alert } from 'react-native';
+import { View, Text, Image, Pressable, TextInput } from 'react-native';
 import { ErrorMessage, Formik } from 'formik';
 import * as Yup from 'yup';
 import icon from '../assets/ic_notarium_light_white.png';
@@ -7,6 +7,7 @@ import { Link, router } from 'expo-router';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
 import ScreenLayout from '../components/ScreenLayout';
+import Toast from 'react-native-toast-message';
 
 export default function SignUp() {
   // VALIDATION
@@ -25,28 +26,31 @@ export default function SignUp() {
   const handleSignUp = async (values) => {
     try {
       await createUserWithEmailAndPassword(auth, values.email, values.password);
-      Alert.alert("Registrarse", "Registro exitoso!", [
-        {
-          text: 'OK',
-          onPress: async () => { }
-        },
-      ], {
-        cancelable: true
+      Toast.show({
+        type: 'success',
+        text1: 'Registrarse',
+        text2: 'Registro exitoso! 👋'
       });
       router.replace("/Students");
     } catch (error) {
       if (error.code === 'auth/email-already-in-use') {
-        Alert.alert('El correo ya está en uso', `Código de error: \n${error.code}`, [
-          { text: 'OK', onPress: () => { } },
-        ]);
+        Toast.show({
+          type: 'error',
+          text1: 'El correo ya está en uso',
+          text2: `Código de error: \n${error.code}`
+        });
       } else if (error.code === 'auth/invalid-email') {
-        Alert.alert('Correo inválido', `Código de error: \n${error.code}`, [
-          { text: 'OK', onPress: () => { } },
-        ]);
+        Toast.show({
+          type: 'error',
+          text1: 'Correo inválido',
+          text2: `Código de error: \n${error.code}`
+        });
       } else {
-        Alert.alert('Error', `${error.code}`, [
-          { text: 'OK', onPress: () => { } },
-        ]);
+        Toast.show({
+          type: 'error',
+          text1: 'Error',
+          text2: `Código de error: \n${error.code}`
+        });
       }
     }
   }

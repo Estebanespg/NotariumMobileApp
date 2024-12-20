@@ -1,6 +1,6 @@
 import { useFonts } from 'expo-font';
 import { Sora_100Thin, Sora_200ExtraLight, Sora_300Light, Sora_400Regular, Sora_500Medium, Sora_600SemiBold, Sora_700Bold, Sora_800ExtraBold } from '@expo-google-fonts/sora';
-import { View, Text, Image, Pressable, TextInput, Alert, ActivityIndicator } from 'react-native';
+import { View, Text, Image, Pressable, TextInput, ActivityIndicator } from 'react-native';
 import { ErrorMessage, Formik } from 'formik';
 import * as Yup from 'yup';
 import icon from '../assets/ic_notarium_light_white.png';
@@ -9,6 +9,7 @@ import { Link, router } from 'expo-router';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
 import ScreenLayout from '../components/ScreenLayout';
+import Toast from 'react-native-toast-message';
 
 export default function SignIn() {
   const [fontsLoaded] = useFonts({
@@ -38,28 +39,31 @@ export default function SignIn() {
   const handleSignIn = async (values) => {
     try {
       await signInWithEmailAndPassword(auth, values.email, values.password);
-      Alert.alert("Iniciar Sesión", "Inicio de sesión exitoso!", [
-        {
-          text: 'OK',
-          onPress: async () => { }
-        },
-      ], {
-        cancelable: true
+      Toast.show({
+        type: 'success',
+        text1: 'Iniciar Sesión',
+        text2: 'Inicio de sesión exitoso! 👋'
       });
       router.replace("/Students");
     } catch (error) {
       if (error.code === 'auth/invalid-credential') {
-        Alert.alert('Correo y/o contraseña incorrectos', `Código de error: \n${error.code}`, [
-          { text: 'OK', onPress: () => { } },
-        ]);
+        Toast.show({
+          type: 'error',
+          text1: 'Correo y/o contraseña incorrectos',
+          text2: `Código de error: \n${error.code}`
+        });
       } else if (error.code === 'auth/invalid-email') {
-        Alert.alert('Correo inválido', `Código de error: \n${error.code}`, [
-          { text: 'OK', onPress: () => { } },
-        ]);
+        Toast.show({
+          type: 'error',
+          text1: 'Correo inválido',
+          text2: `Código de error: \n${error.code}`
+        });
       } else {
-        Alert.alert('Error', `${error.code}`, [
-          { text: 'OK', onPress: () => { } },
-        ]);
+        Toast.show({
+          type: 'error',
+          text1: 'Error',
+          text2: `Código de error: \n${error.code}`
+        });
       }
     }
   }

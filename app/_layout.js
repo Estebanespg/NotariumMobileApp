@@ -35,7 +35,7 @@ const toastConfig = {
         borderLeftColor: '#EF4444',
         borderLeftWidth: 7,
         width: '90%',
-        height: '70',
+        height: '80',
         borderRightColor: '#EF4444',
         borderRightWidth: 7,
       }}
