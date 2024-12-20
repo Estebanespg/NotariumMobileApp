@@ -40,7 +40,7 @@ export default function SignIn() {
     try {
       await signInWithEmailAndPassword(auth, values.email, values.password);
       Toast.show({
-        type: 'success',
+        type: 'info',
         text1: 'Iniciar Sesión',
         text2: 'Inicio de sesión exitoso! 👋'
       });
