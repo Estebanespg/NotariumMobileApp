@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { View, Text, TextInput, Pressable, ScrollView, Alert } from 'react-native';
+import { View, Text, TextInput, Pressable, ScrollView } from 'react-native';
 import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Inputs } from '../../components/Inputs';
@@ -9,6 +9,7 @@ import { useAuth } from '../../context/AuthContext';
 import { db } from '../../firebase'
 import { collection, addDoc } from 'firebase/firestore';
 import { router } from 'expo-router';
+import Toast from 'react-native-toast-message';
 
 export default function Create() {
   const { user } = useAuth();
@@ -38,13 +39,10 @@ export default function Create() {
     const totalPercentage = values.inputs.reduce((sum, input) => sum + parseFloat(input.percentage), 0);
 
     if (totalPercentage > 100) {
-      Alert.alert("Error en los datos", "La suma de los porcentajes no puede exceder el 100%", [
-        {
-          text: 'OK',
-          onPress: async () => { }
-        },
-      ], {
-        cancelable: true
+      Toast.show({
+        type: 'error',
+        text1: 'Error en los datos',
+        text2: 'La suma de los porcentajes no puede exceder el 100%!'
       });
       return;
     }
@@ -55,19 +53,18 @@ export default function Create() {
         student: values.student,
         subjects: [{ subject: values.subject, grades: values.inputs }]
       });
-      Alert.alert("Registrar Estudiante", "Registro exitoso!", [
-        {
-          text: 'OK',
-          onPress: async () => { }
-        },
-      ], {
-        cancelable: true
+      Toast.show({
+        type: 'success',
+        text1: 'Registrar Estudiante',
+        text2: 'Registro exitoso! 👌'
       });
       router.replace("/Students");
     } catch (error) {
-      Alert.alert('Error', `${error}`, [
-        { text: 'OK', onPress: () => { } },
-      ]);
+      Toast.show({
+        type: 'error',
+        text1: 'Error',
+        text2: `Código de error: \n${error.code}`
+      });
     }
   }
 

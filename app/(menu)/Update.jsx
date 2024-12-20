@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { View, Text, TextInput, Pressable, ScrollView, Alert } from 'react-native';
+import { View, Text, TextInput, Pressable, ScrollView } from 'react-native';
 import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Inputs } from '../../components/Inputs';
@@ -8,6 +8,7 @@ import ScreenLayout from '../../components/ScreenLayout';
 import { db } from '../../firebase';
 import { updateDoc, doc, getDoc } from 'firebase/firestore';
 import { useLocalSearchParams, router } from 'expo-router';
+import Toast from 'react-native-toast-message';
 
 export default function Update() {
   const { subjectData } = useLocalSearchParams();
@@ -43,13 +44,10 @@ export default function Update() {
     const totalPercentage = values.inputs.reduce((sum, input) => sum + parseFloat(input.percentage), 0);
 
     if (totalPercentage > 100) {
-      Alert.alert("Error en los datos", "La suma de los porcentajes no puede exceder el 100%", [
-        {
-          text: 'OK',
-          onPress: async () => { }
-        },
-      ], {
-        cancelable: true
+      Toast.show({
+        type: 'error',
+        text1: 'Error en los datos',
+        text2: 'La suma de los porcentajes no puede exceder el 100%!'
       });
       return;
     }
@@ -67,19 +65,18 @@ export default function Update() {
 
       await updateDoc(studentDoc, { subjects: updatedSubjects });
 
-      Alert.alert("Editar Asignatura", "Registro actualizado exitosamente!", [
-        {
-          text: 'OK',
-          onPress: async () => { }
-        },
-      ], {
-        cancelable: true
+      Toast.show({
+        type: 'success',
+        text1: 'Editar Asignatura',
+        text2: 'Registro actualizado exitosamente! 👌'
       });
       router.replace("/Students");
     } catch (error) {
-      Alert.alert('Error', `${error}`, [
-        { text: 'OK', onPress: () => { } },
-      ]);
+      Toast.show({
+        type: 'error',
+        text1: 'Error',
+        text2: `Código de error: \n${error.code}`
+      });
     }
   };
 

@@ -1,4 +1,4 @@
-import { View, Text, Pressable, ScrollView, Alert } from 'react-native';
+import { View, Text, Pressable, ScrollView } from 'react-native';
 import { Link, router } from 'expo-router';
 import { StudentCard } from '../../components/StudentCard';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
@@ -8,6 +8,7 @@ import { signOut } from 'firebase/auth';
 import ScreenLayout from '../../components/ScreenLayout';
 import { useEffect, useState } from 'react';
 import { query, collection, where, getDocs } from 'firebase/firestore';
+import Toast from 'react-native-toast-message';
 
 export default function Students() {
   const { user } = useAuth();
@@ -26,9 +27,11 @@ export default function Students() {
         // console.log(JSON.stringify(studentList));
         setStudent(studentList);
       } catch (error) {
-        Alert.alert('Error', `${error}`, [
-          { text: 'OK', onPress: () => { } },
-        ]);
+        Toast.show({
+          type: 'error',
+          text1: 'Error',
+          text2: `Código de error: \n${error.code}`
+        });
       }
     }
     fetchStudents();
@@ -39,9 +42,11 @@ export default function Students() {
       await signOut(auth);
       router.replace("/");
     } catch (error) {
-      Alert.alert('Error', `${error.code}`, [
-        { text: 'OK', onPress: () => { } },
-      ]);
+      Toast.show({
+        type: 'error',
+        text1: 'Error',
+        text2: `Código de error: \n${error.code}`
+      });
     }
   }
 

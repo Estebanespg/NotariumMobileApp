@@ -27,7 +27,7 @@ export default function SignUp() {
     try {
       await createUserWithEmailAndPassword(auth, values.email, values.password);
       Toast.show({
-        type: 'success',
+        type: 'info',
         text1: 'Registrarse',
         text2: 'Registro exitoso! 👋'
       });

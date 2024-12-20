@@ -4,6 +4,7 @@ import { Link, router } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { db } from '../firebase'
 import { updateDoc, doc, arrayRemove } from 'firebase/firestore';
+import Toast from 'react-native-toast-message';
 
 export function SubjectCard({ data, userId }) {
   const [subjectInfo, setSubjectInfo] = useState({});
@@ -51,19 +52,34 @@ export function SubjectCard({ data, userId }) {
           {
             text: 'Aceptar',
             onPress: async () => {
-              await updateDoc(doc(db, "students", userId), {
-                subjects: arrayRemove({ subject: data.subject, grades: data.grades })
-              });
-              router.replace("/Students");
+              try {
+                await updateDoc(doc(db, "students", userId), {
+                  subjects: arrayRemove({ subject: data.subject, grades: data.grades })
+                });
+                Toast.show({
+                  type: 'error',
+                  text1: 'Eliminar Asignatura',
+                  text2: 'Eliminación exitosa! 👌'
+                });
+                router.replace("/Students");
+              } catch (error) {
+                Toast.show({
+                  type: 'error',
+                  text1: 'Error',
+                  text2: `Código de error: \n${error.code}`
+                });
+              }
             }
           },
         ], {
         cancelable: true
       });
     } catch (error) {
-      Alert.alert('Error', `${error}`, [
-        { text: 'OK', onPress: () => { } },
-      ]);
+      Toast.show({
+        type: 'error',
+        text1: 'Error',
+        text2: `Código de error: \n${error.code}`
+      });
     }
   }
 

@@ -42,7 +42,7 @@ export default function SignIn() {
       Toast.show({
         type: 'info',
         text1: 'Iniciar Sesión',
-        text2: 'Inicio de sesión exitoso! 👋'
+        text2: 'Bienvenido de vuelta! 👋'
       });
       router.replace("/Students");
     } catch (error) {

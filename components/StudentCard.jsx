@@ -3,6 +3,7 @@ import { View, Text, Pressable, Alert } from 'react-native';
 import { Link, router } from 'expo-router';
 import { db } from '../firebase';
 import { deleteDoc, doc } from 'firebase/firestore';
+import Toast from 'react-native-toast-message';
 
 export function StudentCard({ data }) {
   const handleDeleteStudent = () => {
@@ -16,17 +17,32 @@ export function StudentCard({ data }) {
           {
             text: 'Aceptar',
             onPress: async () => {
-              await deleteDoc(doc(db, "students", data.id));
-              router.replace("/Students");
+              try {
+                await deleteDoc(doc(db, "students", data.id));
+                Toast.show({
+                  type: 'error',
+                  text1: 'Eliminar Estudiante',
+                  text2: 'Eliminación exitosa! 👌'
+                });
+                router.replace("/Students");
+              } catch (error) {
+                Toast.show({
+                  type: 'error',
+                  text1: 'Error',
+                  text2: `Código de error: \n${error.code}`
+                });
+              }
             }
           },
         ], {
-          cancelable: true
+        cancelable: true
       });
     } catch (error) {
-      Alert.alert('Error', `${error}`, [
-        { text: 'OK', onPress: () => { } },
-      ]);
+      Toast.show({
+        type: 'error',
+        text1: 'Error',
+        text2: `Código de error: \n${error.code}`
+      });
     }
   }
 
