@@ -84,17 +84,7 @@ export default function Students() {
             <FontAwesome name="plus" size={18} color="white" />
           </Pressable>
         </Link>
-        {/* <Pressable
-          onPress={handleSignOut}
-          className="w-full h-14 bg-[#f93e3e] border-none rounded-lg items-center justify-center">
-          <Text style={{ fontFamily: 'Sora_600SemiBold' }} className="color-white text-lg">
-            Cerrar Sesión
-          </Text>
-        </Pressable> */}
       </View>
-
-      {/* TEXT */}
-      <Text style={{ fontFamily: 'Sora_600SemiBold' }} className="absolute bottom-2.5 left-0 right-0 text-center color-white tracking-wide">Notarium</Text>
     </ScreenLayout>
   );
 }
