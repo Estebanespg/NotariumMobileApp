@@ -1,11 +1,11 @@
 import { View, Text, Pressable, ScrollView } from 'react-native';
 import { Link, router } from 'expo-router';
-import { StudentCard } from '../../components/StudentCard';
+import { StudentCard } from '../../../components/StudentCard';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { useAuth } from '../../context/AuthContext';
-import { auth, db } from '../../firebase';
+import { useAuth } from '../../../context/AuthContext';
+import { auth, db } from '../../../firebase';
 import { signOut } from 'firebase/auth';
-import ScreenLayout from '../../components/ScreenLayout';
+import ScreenLayout from '../../../components/ScreenLayout';
 import { useEffect, useState } from 'react';
 import { query, collection, where, getDocs } from 'firebase/firestore';
 import Toast from 'react-native-toast-message';
@@ -78,19 +78,19 @@ export default function Students() {
       </View>
 
       {/* BUTTONS */}
-      <View className="w-full h-1/4 items-end">
+      <View className="w-full h-1/4 justify-center items-end">
         <Link asChild href="/Create">
-          <Pressable className="w-16 h-16 bg-[#6440a5] border-none rounded-2xl items-center justify-center mb-3">
+          <Pressable className="w-16 h-16 bg-[#6440a5] border-none rounded-2xl items-center justify-center">
             <FontAwesome name="plus" size={18} color="white" />
           </Pressable>
         </Link>
-        <Pressable
+        {/* <Pressable
           onPress={handleSignOut}
           className="w-full h-14 bg-[#f93e3e] border-none rounded-lg items-center justify-center">
           <Text style={{ fontFamily: 'Sora_600SemiBold' }} className="color-white text-lg">
             Cerrar Sesión
           </Text>
-        </Pressable>
+        </Pressable> */}
       </View>
 
       {/* TEXT */}

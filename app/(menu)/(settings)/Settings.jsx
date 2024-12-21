@@ -1,8 +1,8 @@
 import { View, Text, Pressable } from 'react-native';
-import { useAuth } from '../../context/AuthContext';
-import { auth, db } from '../../firebase';
+import { useAuth } from '../../../context/AuthContext';
+import { auth, db } from '../../../firebase';
 import { signOut } from 'firebase/auth';
-import ScreenLayout from '../../components/ScreenLayout';
+import ScreenLayout from '../../../components/ScreenLayout';
 import Toast from 'react-native-toast-message';
 import { router } from 'expo-router';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
