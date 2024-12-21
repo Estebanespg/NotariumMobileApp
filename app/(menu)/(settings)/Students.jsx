@@ -59,7 +59,7 @@ export default function Students() {
       </View>
 
       {/* TABLE */}
-      <View className="w-full h-3/5 pt-5 pr-2 pb-5 pl-2">
+      <View className="w-full h-3/5 pt-5 pr-2 pl-2">
         {
           student.length > 0 ? (
             <ScrollView>
@@ -78,7 +78,7 @@ export default function Students() {
       </View>
 
       {/* BUTTONS */}
-      <View className="w-full h-1/4 justify-center items-end">
+      <View className="w-full h-1/5 justify-center items-end">
         <Link asChild href="/Create">
           <Pressable className="w-16 h-16 bg-[#6440a5] border-none rounded-2xl items-center justify-center">
             <FontAwesome name="plus" size={18} color="white" />

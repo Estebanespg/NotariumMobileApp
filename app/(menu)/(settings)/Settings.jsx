@@ -66,7 +66,7 @@ export default function Settings() {
       </View>
 
       {/* FOOTER */}
-      <View className="w-full h-1/4 justify-center items-end">
+      <View className="w-full h-1/5 justify-center items-end">
         <Pressable
           onPress={handleSignOut}
           className="w-full h-14 bg-[#f93e3e] border-none rounded-lg items-center justify-center">
