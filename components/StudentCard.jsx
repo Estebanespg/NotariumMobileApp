@@ -49,7 +49,7 @@ export function StudentCard({ data }) {
   return (
     <>
       <Link href={`/${encodeURIComponent(JSON.stringify(data))}`} className="mb-5">
-        <View className="flex-row w-full h-20 justify-between items-center bg-slate-600 px-6 rounded-lg">
+        <View className="flex-row w-full h-20 justify-between items-center bg-red-600 px-6 rounded-lg">
           <View>
             <Text style={{ fontFamily: 'Sora_600SemiBold' }} className="color-white text-lg">{data.student}</Text>
             <Text style={{ fontFamily: 'Sora_300Light' }} className="color-slate-400 text-base">{Object.keys(data.subjects).length} {Object.keys(data.subjects).length === 1 ? 'Asignatura' : 'Asignaturas'}</Text>
