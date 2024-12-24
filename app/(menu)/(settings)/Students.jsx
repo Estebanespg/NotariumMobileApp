@@ -37,19 +37,6 @@ export default function Students() {
     fetchStudents();
   }, [user]);
 
-  const handleSignOut = async () => {
-    try {
-      await signOut(auth);
-      router.replace("/");
-    } catch (error) {
-      Toast.show({
-        type: 'error',
-        text1: 'Error',
-        text2: `Código de error: \n${error.code}`
-      });
-    }
-  }
-
   return (
     <ScreenLayout>
       {/* TITLE */}
