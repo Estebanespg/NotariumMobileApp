@@ -25,14 +25,13 @@ export default function MenuLayout() {
     return <ScreenLayout><ActivityIndicator color={"#fff"} size={"large"} /></ScreenLayout>;
   }
 
-  NavigationBar.setBackgroundColorAsync("#11181d");
   return (
     <AuthContextProvider>
       <>
         <StatusBar style="light" />
         <Stack
           screenOptions={{
-            headerStyle: { backgroundColor: "#11181d" },
+            headerStyle: { backgroundColor: "#0c1114" },
             headerTintColor: "white",
             title: "",
             headerTitle: () =>

@@ -74,7 +74,7 @@ const toastConfig = {
 };
 
 export default function Layout() {
-  NavigationBar.setBackgroundColorAsync("#11181d");
+  NavigationBar.setBackgroundColorAsync("#0c1114");
   return (
     <AuthContextProvider>
       <>

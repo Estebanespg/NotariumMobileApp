@@ -6,14 +6,14 @@ export default function SettingsLayout() {
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarStyle: { backgroundColor: '#11181d' },
-        tabBarActiveTintColor: "#6440a5"
+        tabBarStyle: { backgroundColor: '#0c1114', borderTopWidth: 0 },
+        tabBarActiveTintColor: "#6440a5",
       }}
     >
       <Tabs.Screen
         name="Students"
         options={{
-          title: 'Menú',
+          title: 'Estudiantes',
           tabBarIcon: ({ color }) => <FontAwesome name="home" size={26} color={color} />
         }}
       />
