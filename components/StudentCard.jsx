@@ -24,7 +24,7 @@ export function StudentCard({ data }) {
                   text1: 'Eliminar Estudiante',
                   text2: 'Eliminación exitosa! 👌'
                 });
-                router.replace("/Students");
+                router.replace("/");
               } catch (error) {
                 Toast.show({
                   type: 'error',
