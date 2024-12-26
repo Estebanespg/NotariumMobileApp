@@ -6,14 +6,41 @@ import ScreenLayout from '../../../components/ScreenLayout';
 import Toast from 'react-native-toast-message';
 import { router } from 'expo-router';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
+import * as Print from 'expo-print';
+import * as FileSystem from 'expo-file-system';
+import * as Sharing from 'expo-sharing';
 
 export default function Settings() {
-  const handleDownloadReport = () => {
-    Toast.show({
-      type: 'success',
-      text1: 'Descarga en proceso',
-      text2: 'El reporte se descargará en breve.',
-    });
+  const handleDownloadReport = async () => {
+    try {
+      const htmlContent = '<h1>Este es mi PDF</h1><p>¡Creado con HTML y React Native!</p>';
+      const { uri } = await Print.printToFileAsync({ html: htmlContent });
+
+      console.log('PDF temporal creado en:', uri);
+
+      const downloadUri = `${FileSystem.documentDirectory}ReporteEstudiantes.pdf`;
+
+      await FileSystem.moveAsync({
+        from: uri,
+        to: downloadUri,
+      });
+
+      if (await Sharing.isAvailableAsync()) {
+        await Sharing.shareAsync(downloadUri);
+      }
+
+      Toast.show({
+        type: 'success',
+        text1: 'Descarga satisfactoria! 😎',
+        text2: 'El reporte PDF se ha descargado.'
+      });
+    } catch (error) {
+      Toast.show({
+        type: 'error',
+        text1: 'Error',
+        text2: `No se pudo descargar el PDF: \n${error}`
+      });
+    }
   };
 
   const handleDeleteAccount = () => {
