@@ -109,33 +109,38 @@ export default function HtmlReport(students) {
                 </tr>
               </thead>
               <tbody>
-                ${student.subjects.map((subject) => `
-                  <tr>
-                    <td>${subject.subject}</td>
-                    <td>%</td>
-                    <td>Nota</td>
-                    <td>
-                      <table class="subtable">
-                        <thead>
-                          <tr>
-                            <th>Parámetro</th>
-                            <th>Nota</th>
-                            <th>Porcentaje</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          ${subject.grades.map((grade) => `
+                ${student.subjects.map((subject) => {
+                  const totalPercentage = subject.grades.reduce((sum, grade) => sum + parseFloat(grade.percentage), 0);
+                  const weightedGrade = subject.grades.reduce((sum, grade) => sum + parseFloat(grade.grade) * (parseFloat(grade.percentage) / 100), 0);
+
+                  return `
+                    <tr>
+                      <td>${subject.subject}</td>
+                      <td>${totalPercentage.toFixed(0)}%</td>
+                      <td>${weightedGrade.toFixed(1)}</td>
+                      <td>
+                        <table class="subtable">
+                          <thead>
                             <tr>
-                              <td>${grade.parameter}</td>
-                              <td>${parseFloat(grade.grade).toFixed(1)}</td>
-                              <td>${grade.percentage}%</td>
+                              <th>Parámetro</th>
+                              <th>Nota</th>
+                              <th>Porcentaje</th>
                             </tr>
-                          `).join("")}
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                `).join("")}
+                          </thead>
+                          <tbody>
+                            ${subject.grades.map((grade) => `
+                              <tr>
+                                <td>${grade.parameter}</td>
+                                <td>${parseFloat(grade.grade).toFixed(1)}</td>
+                                <td>${grade.percentage}%</td>
+                              </tr>
+                            `).join("")}
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                  `;
+                }).join("")}
               </tbody>
             </table>
           </div>
