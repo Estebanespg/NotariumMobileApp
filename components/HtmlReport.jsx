@@ -12,8 +12,16 @@ export default function HtmlReport() {
             margin: 20px;
           }
 
-          h1 {
-            text-align: center;
+          .title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100px;
+            margin-bottom: -50px;
+          }
+
+          .content {
+            margin-top: 100px;
           }
 
           table {
@@ -33,6 +41,22 @@ export default function HtmlReport() {
             background-color: #f4f4f4;
           }
 
+          .header th:nth-child(1) {
+            width: 26%;
+          }
+
+          .header th:nth-child(2) {
+            width: 12%;
+          }
+
+          .header th:nth-child(3) {
+            width: 12%;
+          }
+
+          .header th:nth-child(4) {
+            width: 50%;
+          }
+
           .subtable {
             width: 90%;
             margin: auto;
@@ -50,28 +74,32 @@ export default function HtmlReport() {
             background-color: #e0e0e0;
           }
 
-          .subtable th:nth-child(1),
-          .subtable td:nth-child(1) {
+          .subtable th:nth-child(1) {
             width: 60%;
           }
 
-          .subtable th:nth-child(2),
-          .subtable td:nth-child(2) {
+          .subtable th:nth-child(2) {
             width: 20%;
           }
 
-          .subtable th:nth-child(3),
-          .subtable td:nth-child(3) {
+          .subtable th:nth-child(3) {
             width: 20%;
+          }
+
+          .footer {
+            display: flex;
+            align-items: end;
+            justify-content: center;
+            height: 50px;
           }
         </style>
       </head>
       <body>
-        <h1>Reporte Académico</h1>
-        <div>
+        <h1 class="title">Reporte Académico</h1>
+        <div class="content">
           <p><strong>Nombre del Estudiante:</strong> Juan Pérez</p>
           <table>
-            <thead>
+            <thead class="header">
               <tr>
                 <th>Materia</th>
                 <th>Porcentaje Evaluado</th>
@@ -172,6 +200,7 @@ export default function HtmlReport() {
             </tbody>
           </table>
         </div>
+        <h4 class="footer">Notarium</h4>
       </body>
     </html>
   `;

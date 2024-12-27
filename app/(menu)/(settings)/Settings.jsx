@@ -9,14 +9,15 @@ import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import * as Print from 'expo-print';
 import * as FileSystem from 'expo-file-system';
 import * as Sharing from 'expo-sharing';
+import HtmlReport from '../../../components/HtmlReport';
 
 export default function Settings() {
   const handleDownloadReport = async () => {
     try {
-      const htmlContent = '<h1>Este es mi PDF</h1><p>¡Creado con HTML y React Native!</p>';
+      const htmlContent = HtmlReport();
       const { uri } = await Print.printToFileAsync({ html: htmlContent });
 
-      console.log('PDF temporal creado en:', uri);
+      // console.log('PDF temporal creado en:', uri);
 
       const downloadUri = `${FileSystem.documentDirectory}ReporteEstudiantes.pdf`;
 
