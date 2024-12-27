@@ -1,4 +1,4 @@
-export default function HtmlReport() {
+export default function HtmlReport(students) {
   return `
     <!DOCTYPE html>
     <html lang="es">
@@ -96,110 +96,50 @@ export default function HtmlReport() {
       </head>
       <body>
         <h1 class="title">Reporte Académico</h1>
-        <div class="content">
-          <p><strong>Nombre del Estudiante:</strong> Juan Pérez</p>
-          <table>
-            <thead class="header">
-              <tr>
-                <th>Materia</th>
-                <th>Porcentaje Evaluado</th>
-                <th>Nota Definitiva</th>
-                <th>Detalles</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Matemáticas</td>
-                <td>%</td>
-                <td>Nota</td>
-                <td>
-                  <table class="subtable">
-                    <thead>
-                      <tr>
-                        <th>Parámetro</th>
-                        <th>Nota</th>
-                        <th>Porcentaje</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Examen Parcial</td>
-                        <td>4.5</td>
-                        <td>40%</td>
-                      </tr>
-                      <tr>
-                        <td>Tareas</td>
-                        <td>4.0</td>
-                        <td>30%</td>
-                      </tr>
-                      <tr>
-                        <td>Examen Final</td>
-                        <td>4.8</td>
-                        <td>30%</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </td>
-              </tr>
-              <tr>
-                <td>Historia</td>
-                <td>%</td>
-                <td>Nota</td>
-                <td>
-                  <table class="subtable">
-                    <thead>
-                      <tr>
-                        <th>Parámetro</th>
-                        <th>Nota</th>
-                        <th>Porcentaje</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Ensayo</td>
-                        <td>3.8</td>
-                        <td>50%</td>
-                      </tr>
-                      <tr>
-                        <td>Exposición</td>
-                        <td>4.0</td>
-                        <td>50%</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </td>
-              </tr>
-              <tr>
-                <td>Ciencias</td>
-                <td>%</td>
-                <td>Nota</td>
-                <td>
-                  <table class="subtable">
-                    <thead>
-                      <tr>
-                        <th>Parámetro</th>
-                        <th>Nota</th>
-                        <th>Porcentaje</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Proyecto</td>
-                        <td>4.7</td>
-                        <td>60%</td>
-                      </tr>
-                      <tr>
-                        <td>Prácticas</td>
-                        <td>4.3</td>
-                        <td>40%</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        ${students.map((student) => `
+          <div class="content">
+            <p><strong>Nombre del Estudiante:</strong> ${student.student}</p>
+            <table>
+              <thead class="header">
+                <tr>
+                  <th>Materia</th>
+                  <th>Porcentaje Evaluado</th>
+                  <th>Nota Definitiva</th>
+                  <th>Detalles</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${student.subjects.map((subject) => `
+                  <tr>
+                    <td>${subject.subject}</td>
+                    <td>%</td>
+                    <td>Nota</td>
+                    <td>
+                      <table class="subtable">
+                        <thead>
+                          <tr>
+                            <th>Parámetro</th>
+                            <th>Nota</th>
+                            <th>Porcentaje</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          ${subject.grades.map((grade) => `
+                            <tr>
+                              <td>${grade.parameter}</td>
+                              <td>${parseFloat(grade.grade).toFixed(1)}</td>
+                              <td>${grade.percentage}%</td>
+                            </tr>
+                          `).join("")}
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                `).join("")}
+              </tbody>
+            </table>
+          </div>
+        `).join("")}
         <h4 class="footer">Notarium</h4>
       </body>
     </html>

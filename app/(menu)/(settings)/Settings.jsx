@@ -10,11 +10,39 @@ import * as Print from 'expo-print';
 import * as FileSystem from 'expo-file-system';
 import * as Sharing from 'expo-sharing';
 import HtmlReport from '../../../components/HtmlReport';
+import { useEffect, useState } from 'react';
+import { collection, getDocs, query, where } from 'firebase/firestore';
 
 export default function Settings() {
+  const { user } = useAuth();
+
+  const [students, setStudents] = useState([]);
+
+  useEffect(() => {
+    const fetchStudents = async () => {
+      const studentList = [];
+      const q = query(collection(db, "students"), where("uid", "==", user.uid));
+      try {
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+          studentList.push({ id: doc.id, ...doc.data() });
+        });
+        // console.log(JSON.stringify(studentList));
+        setStudents(studentList);
+      } catch (error) {
+        Toast.show({
+          type: 'error',
+          text1: 'Error',
+          text2: `Código de error: \n${error}`
+        });
+      }
+    }
+    fetchStudents();
+  }, [user]);
+
   const handleDownloadReport = async () => {
     try {
-      const htmlContent = HtmlReport();
+      const htmlContent = HtmlReport(students);
       const { uri } = await Print.printToFileAsync({ html: htmlContent });
 
       // console.log('PDF temporal creado en:', uri);
