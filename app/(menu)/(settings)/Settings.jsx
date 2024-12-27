@@ -42,6 +42,12 @@ export default function Settings() {
 
   const handleDownloadReport = async () => {
     try {
+      Toast.show({
+        type: 'success',
+        text1: 'Generación satisfactoria! 😎',
+        text2: 'El reporte PDF se ha generado.'
+      });
+
       const htmlContent = HtmlReport(students);
       const { uri } = await Print.printToFileAsync({ html: htmlContent });
 
@@ -57,12 +63,6 @@ export default function Settings() {
       if (await Sharing.isAvailableAsync()) {
         await Sharing.shareAsync(downloadUri);
       }
-
-      Toast.show({
-        type: 'success',
-        text1: 'Descarga satisfactoria! 😎',
-        text2: 'El reporte PDF se ha descargado.'
-      });
     } catch (error) {
       Toast.show({
         type: 'error',
