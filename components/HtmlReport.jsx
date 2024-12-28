@@ -1,4 +1,4 @@
-export default function HtmlReport(students) {
+export default function HtmlReport(students, user) {
   return `
     <!DOCTYPE html>
     <html lang="es">
@@ -17,7 +17,16 @@ export default function HtmlReport(students) {
             align-items: center;
             justify-content: center;
             height: 100px;
+            margin-top: 100px;
             margin-bottom: -50px;
+          }
+
+          .subtitle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 25px;
+            margin-bottom: -75px;
           }
 
           .content {
@@ -96,6 +105,7 @@ export default function HtmlReport(students) {
       </head>
       <body>
         <h1 class="title">Reporte Académico</h1>
+        <h4 class="subtitle">Generado por: ${user.email}</h4>
         ${students.map((student) => `
           <div class="content">
             <p><strong>Nombre del Estudiante:</strong> ${student.student}</p>

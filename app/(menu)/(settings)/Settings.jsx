@@ -48,7 +48,7 @@ export default function Settings() {
         text2: 'El reporte PDF se ha generado.'
       });
 
-      const htmlContent = HtmlReport(students);
+      const htmlContent = HtmlReport(students, user);
       const { uri } = await Print.printToFileAsync({ html: htmlContent });
 
       // console.log('PDF temporal creado en:', uri);
