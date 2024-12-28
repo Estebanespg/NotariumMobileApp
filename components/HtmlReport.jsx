@@ -1,4 +1,16 @@
 export default function HtmlReport(students, user) {
+  const now = new Date();
+  const formattedDate = now.toLocaleDateString('es-ES', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+  const formattedTime = now.toLocaleTimeString('es-ES', {
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+  });
+
   return `
     <!DOCTYPE html>
     <html lang="es">
@@ -95,6 +107,14 @@ export default function HtmlReport(students, user) {
             width: 20%;
           }
 
+          .hour {
+            display: flex;
+            align-items: end;
+            justify-content: center;
+            height: 20px;
+            margin-bottom: -40px;
+          }
+
           .footer {
             display: flex;
             align-items: end;
@@ -155,6 +175,7 @@ export default function HtmlReport(students, user) {
             </table>
           </div>
         `).join("")}
+        <h5 class="hour">Generado el día ${formattedDate} a las ${formattedTime}.</h5>
         <h4 class="footer">Notarium</h4>
       </body>
     </html>
