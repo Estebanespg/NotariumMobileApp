@@ -83,7 +83,6 @@ export default function Settings() {
       });
       router.replace("/");
     } catch (error) {
-      console.log(error);
       Toast.show({
         type: 'error',
         text1: 'Error',
