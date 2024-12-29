@@ -1,10 +1,9 @@
 import { View, Text, Pressable, ScrollView } from 'react-native';
-import { Link, router } from 'expo-router';
+import { Link } from 'expo-router';
 import { StudentCard } from '../../../components/StudentCard';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { useAuth } from '../../../context/AuthContext';
-import { auth, db } from '../../../firebase';
-import { signOut } from 'firebase/auth';
+import { db } from '../../../firebase';
 import ScreenLayout from '../../../components/ScreenLayout';
 import { useEffect, useState } from 'react';
 import { query, collection, where, getDocs } from 'firebase/firestore';
