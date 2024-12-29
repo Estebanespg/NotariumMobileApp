@@ -1,7 +1,7 @@
 import { View, Text, Pressable } from 'react-native';
 import { useAuth } from '../../../context/AuthContext';
 import { auth, db } from '../../../firebase';
-import { signOut } from 'firebase/auth';
+import { signOut, deleteUser } from 'firebase/auth';
 import ScreenLayout from '../../../components/ScreenLayout';
 import Toast from 'react-native-toast-message';
 import { router } from 'expo-router';
@@ -72,12 +72,24 @@ export default function Settings() {
     }
   };
 
-  const handleDeleteAccount = () => {
-    Toast.show({
-      type: 'info',
-      text1: 'Funcionalidad no implementada',
-      text2: 'Esta opción estará disponible pronto.',
-    });
+  const handleDeleteAccount = async () => {
+    try {
+      const currentUser = auth.currentUser;
+      await deleteUser(currentUser);
+      Toast.show({
+        type: 'error',
+        text1: 'Eliminar Cuenta',
+        text2: 'Su cuenta se ha eliminado. Adiós 👋',
+      });
+      router.replace("/");
+    } catch (error) {
+      console.log(error);
+      Toast.show({
+        type: 'error',
+        text1: 'Error',
+        text2: `Código de error: \n${error}`
+      });
+    }
   };
 
   const handleSignOut = async () => {
@@ -88,7 +100,7 @@ export default function Settings() {
       Toast.show({
         type: 'error',
         text1: 'Error',
-        text2: `Código de error: \n${error.code}`
+        text2: `Código de error: \n${error}`
       });
     }
   };
