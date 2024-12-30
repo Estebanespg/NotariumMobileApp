@@ -45,6 +45,12 @@ export default function SignUp() {
           text1: 'Correo inválido',
           text2: `Código de error: \n${error.code}`
         });
+      } else if (error.code === 'auth/network-request-failed') {
+        Toast.show({
+          type: 'error',
+          text1: 'Conéctate a Internet',
+          text2: `Comprueba la conexión. \nCodigo de error: \n${error.code}`
+        });
       } else {
         Toast.show({
           type: 'error',
