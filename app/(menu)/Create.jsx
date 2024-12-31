@@ -84,10 +84,16 @@ export default function Create() {
         onSubmit={createStudent}
       >
         {({ handleChange, handleBlur, handleSubmit, values, isValid, setFieldValue }) => {
-          const addInputs = () => {
+          const createInputs = () => {
             const newInput = { grade: '', percentage: '', parameter: '' };
             setFieldValue('inputs', [...values.inputs, newInput]);
             setDynamicInputs([...dynamicInputs, { id: dynamicInputs.length + 1 }]);
+          };
+          const deleteInputs = () => {
+            if (dynamicInputs.length > 0) {
+              setDynamicInputs(dynamicInputs.slice(0, -1));
+              setFieldValue('inputs', values.inputs.slice(0, -1));
+            }
           };
 
           return (
@@ -179,17 +185,21 @@ export default function Create() {
                     <Pressable
                       className="w-24 h-14 bg-[#49cc90] border-none rounded-lg items-center justify-center"
                       title="Add Input"
-                      onPress={addInputs}
+                      onPress={createInputs}
                     >
                       <FontAwesome name="plus" size={18} color="white" />
                     </Pressable>
-                    <Pressable
-                      className="w-24 h-14 ml-10 bg-[#f93e3e] border-none rounded-lg items-center justify-center"
-                      title="Add Input"
-                      onPress={addInputs}
-                    >
-                      <FontAwesome name="minus" size={18} color="white" />
-                    </Pressable>
+                    {
+                      dynamicInputs.length > 1 ? (
+                        <Pressable
+                          className="w-24 h-14 ml-10 bg-[#f93e3e] border-none rounded-lg items-center justify-center"
+                          title="Add Input"
+                          onPress={deleteInputs}
+                        >
+                          <FontAwesome name="minus" size={18} color="white" />
+                        </Pressable>
+                      ) : null
+                    }
                   </View>
                 </ScrollView>
               </View>
