@@ -96,9 +96,16 @@ export default function Update() {
         onSubmit={updateSubject}
       >
         {({ handleChange, handleBlur, handleSubmit, values, isValid, setFieldValue }) => {
-          const addInputs = () => {
+          const createInputs = () => {
             const newInput = { grade: '', percentage: '', parameter: '' };
             setFieldValue('inputs', [...values.inputs, newInput]);
+          };
+
+          const deleteInputs = () => {
+            if (values.inputs.length > 0) {
+              const updatedInputs = values.inputs.slice(0, -1);
+              setFieldValue('inputs', updatedInputs);
+            }
           };
 
           return (
@@ -163,14 +170,25 @@ export default function Update() {
                   ))}
 
                   {/* ADD INPUT */}
-                  <View className="items-center mb-24">
+                  <View className="flex-row justify-center mb-24">
                     <Pressable
                       className="w-24 h-14 bg-[#49cc90] border-none rounded-lg items-center justify-center"
                       title="Add Input"
-                      onPress={addInputs}
+                      onPress={createInputs}
                     >
                       <FontAwesome name="plus" size={18} color="white" />
                     </Pressable>
+                    {
+                      values.inputs.length > 1 ? (
+                        <Pressable
+                          className="w-24 h-14 ml-10 bg-[#f93e3e] border-none rounded-lg items-center justify-center"
+                          title="Add Input"
+                          onPress={deleteInputs}
+                        >
+                          <FontAwesome name="minus" size={18} color="white" />
+                        </Pressable>
+                      ) : null
+                    }
                   </View>
                 </ScrollView>
               </View>
