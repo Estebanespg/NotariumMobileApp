@@ -175,13 +175,20 @@ export default function Create() {
                   ))}
 
                   {/* ADD INPUT */}
-                  <View className="items-center mb-24">
+                  <View className="flex-row justify-center mb-24">
                     <Pressable
                       className="w-24 h-14 bg-[#49cc90] border-none rounded-lg items-center justify-center"
                       title="Add Input"
                       onPress={addInputs}
                     >
                       <FontAwesome name="plus" size={18} color="white" />
+                    </Pressable>
+                    <Pressable
+                      className="w-24 h-14 ml-10 bg-[#f93e3e] border-none rounded-lg items-center justify-center"
+                      title="Add Input"
+                      onPress={addInputs}
+                    >
+                      <FontAwesome name="minus" size={18} color="white" />
                     </Pressable>
                   </View>
                 </ScrollView>
