@@ -8,7 +8,6 @@ import ScreenLayout from '../../../components/ScreenLayout';
 import { useEffect, useState } from 'react';
 import { query, collection, where, getDocs } from 'firebase/firestore';
 import Toast from 'react-native-toast-message';
-import { ActivityIndicator } from 'react-native';
 
 export default function Students() {
   const { user } = useAuth();
@@ -56,11 +55,6 @@ export default function Students() {
                 ))
               }
             </ScrollView>
-          ) : !user ? (
-            <View className="h-full justify-center items-center">
-              <Text style={{ fontFamily: 'Sora_500Medium' }} className="color-white text-lg">Conéctate a Internet. Comprueba la conexión</Text>
-              <ActivityIndicator color={"#fff"} size={"large"} />
-            </View>
           ) : (
             <View className="h-full justify-center items-center">
               <Text style={{ fontFamily: 'Sora_500Medium' }} className="color-white text-lg">Aún no hay estudiantes registrados...</Text>
