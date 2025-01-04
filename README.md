@@ -1,8 +1,12 @@
 # NOTARIUM
 Bienvenidos a Notarium.
 
-Que es? 
+Que es?
 
-Tecnologías. 
+Se usaron tecnologías como React Native, Expo, Tailwind, etc. 
 
-Algunas vistas qué muestren el contenido de la app. 
+Estudiantes
+
+Asignaturas
+
+Editar Asignaturas
