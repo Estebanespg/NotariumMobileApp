@@ -7,6 +7,12 @@ Se usaron tecnologías como React Native, Expo, Tailwind, etc.
 
 Estudiantes
 
+Eliminar estudiantes
+
 Asignaturas
 
-Editar Asignaturas
+Editar asignaturas
+
+Borrar asignaturas
+
+Generar PDF
