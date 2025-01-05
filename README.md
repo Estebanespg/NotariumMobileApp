@@ -42,7 +42,7 @@
   <ol>
     <li>
       <p><strong>Clonar el repositorio</strong>:</p>
-      <pre><code>git clone https://github.com/usuario/Notarium.git
+      <pre><code>git clone https://github.com/Estebanespg/NotariumMobileApp.git
 cd Notarium
       </code></pre>
     </li>
