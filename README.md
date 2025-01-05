@@ -43,7 +43,7 @@
     <li>
       <p><strong>Clonar el repositorio</strong>:</p>
       <pre><code>git clone https://github.com/Estebanespg/NotariumMobileApp.git
-cd Notarium
+cd NotariumMobileApp
       </code></pre>
     </li>
     <li>
