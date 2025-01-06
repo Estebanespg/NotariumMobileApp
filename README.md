@@ -41,18 +41,23 @@
   <h2>📦 Instalación</h2>
   <ol>
     <li>
-      <p><strong>Clonar el repositorio</strong>:</p>
-      <pre><code>git clone https://github.com/Estebanespg/NotariumMobileApp.git
-cd NotariumMobileApp
-      </code></pre>
+      <p><strong>Clonar el repositorio:</strong></p>
+      <pre><code>git clone https://github.com/Estebanespg/NotariumMobileApp.git</code></pre>
     </li>
     <li>
-      <p><strong>Instalar dependencias</strong>:</p>
-      <pre><code>pip install -r requirements.txt</code></pre>
+      <p><strong>Acceder al proyecto:</strong></p>
+      <pre><code>cd NotariumMobileApp</code></pre>
     </li>
     <li>
-      <p><strong>Ejecutar el proyecto</strong>:</p>
-      <pre><code>python notarium.py</code></pre>
+      <p><strong>Instalar dependencias:</strong></p>
+      <pre><code>npm install</code></pre>
+    </li>
+    <li>
+      <p><strong>Ejecutar el proyecto:</strong></p>
+      <pre><code>npm start</code></pre>
+    </li>
+    <li>
+      <p><strong>Escanea el código QR y pruébala con Expo Go</strong></p>
     </li>
   </ol>
 
