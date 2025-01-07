@@ -77,12 +77,13 @@
   <!-- Tecnologías utilizadas -->
   <h2>🛠️ Tecnologías utilizadas</h2>
   <ul>
-    <li><strong>Lenguaje</strong>: Python 3.x</li>
-    <li><strong>Librerías</strong>:
+    <li><strong>Lenguaje:</strong> Javascript</li>
+    <li><strong>Librerías:</strong>
       <ul>
-        <li>ReportLab: Generación de reportes en PDF.</li>
-        <li>Pandas: Gestión y análisis de datos.</li>
-        <li>Flask (opcional): Interfaz web para el sistema.</li>
+        <li>React Native: Framework para apps móviles con JavaScript.</li>
+        <li>Expo: Plataforma para simplificar React Native.</li>
+        <li>Native Wind: Estilos Tailwind CSS en React Native.</li>
+        <li>Firebase: Base de datos y Autenticación de Google.</li>
       </ul>
     </li>
   </ul>
