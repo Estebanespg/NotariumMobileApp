@@ -90,37 +90,10 @@
 
   <hr>
 
-  <!-- Contribuciones -->
-  <h2>🤝 Contribuciones</h2>
-  <p>¡Nos encantaría tu ayuda para mejorar <strong>Notarium</strong>! Sigue estos pasos para contribuir:</p>
-  <ol>
-    <li>Realiza un fork del repositorio.</li>
-    <li>Crea una rama con tu nueva funcionalidad:
-      <pre><code>git checkout -b feature/nueva-funcionalidad</code></pre>
-    </li>
-    <li>Envía un pull request cuando estés listo.</li>
-  </ol>
-
-  <hr>
-
-  <!-- Licencia -->
-  <h2>📄 Licencia</h2>
-  <p><strong>Notarium</strong> está licenciado bajo la <a href="LICENSE">MIT License</a>.</p>
-
-  <hr>
-
-  <!-- Autores -->
-  <h2>👥 Autores</h2>
+  <!-- Autor -->
+  <h2>👥 Autor</h2>
   <ul>
-    <li><strong>[Tu Nombre]</strong>: Desarrollador principal.</li>
-    <li><strong>[Colaborador 1]</strong>: Especialista en diseño de reportes.</li>
-    <li><strong>[Colaborador 2]</strong>: Consultor académico.</li>
+    <li><strong>Esteban Pérez:</strong> Desarrollador y creador de Notarium.</li>
   </ul>
-
-  <hr>
-
-  <!-- Agradecimientos -->
-  <h2>🌟 Agradecimientos</h2>
-  <p>A todas las personas que contribuyeron al desarrollo de este proyecto y a la comunidad docente que nos motivó a crearlo.</p>
 </body>
 </html>
