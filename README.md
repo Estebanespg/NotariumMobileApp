@@ -72,7 +72,7 @@
   <h3>2. Gestión de evaluaciones</h3>
   <p>Configura evaluaciones, define pesos y añade calificaciones.</p>
   <h3>3. Generación de reportes</h3>
-  <p>Exporta reportes detallados en formato PDF con las calificaciones por asignatura.</p>
+  <p>Exporta reportes detallados en formato PDF con las calificaciones por asignatura. <a href="assets/ReporteEstudiantes.pdf">Ver PDF de ejemplo</a></p>
 
   <hr>
 
