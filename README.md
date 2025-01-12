@@ -5,23 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-  <!-- Título centrado -->
-  <div style="text-align: center;">
-    <h1>Notarium 📔</h1>
-    <p><b>Notarium</b> es un sistema de gestión de notas académicas diseñado para simplificar el seguimiento y análisis del rendimiento estudiantil. Este software permite registrar estudiantes, asignaturas y configurar sus calificaciones, como sus parámetros, notas y porcentajes, permite calcular promedios y generar reportes en PDF detallados.</p>
-  </div>
+  <h1>Notarium 📔</h1>
+  <p><b>Notarium</b> es un sistema de gestión de notas académicas diseñado para simplificar el seguimiento y análisis del rendimiento estudiantil. Este software permite registrar estudiantes, asignaturas y configurar sus calificaciones, como sus parámetros, notas y porcentajes, permite calcular promedios y generar reportes en PDF detallados.</p>
 
   <hr>
 
   <!-- Características principales -->
   <h2>🚀 Características principales</h2>
   <ul>
-    <li><strong>Gestión de estudiantes</strong>: Registra, actualiza y elimina estudiantes fácilmente.</li>
-    <li><strong>Evaluaciones personalizadas</strong>: Define evaluaciones con diferentes pesos para cada asignatura.</li>
-    <li><strong>Informes y Estadísticas</strong>: Análisis de rendimiento y progreso académico.</li>
-    <li><strong>Reportes dinámicos</strong>: Crea reportes en PDF para cada estudiante.</li>
-    <li><strong>Interfaz intuitiva</strong>: Sistema simple y fácil de usar para docentes y estudiantes.</li>
-    <li><strong>Seguridad y Encriptación</strong>: Protección con datos encriptados.</li>
+    <li><strong>📚 Gestión de estudiantes</strong>: Registra, actualiza y elimina estudiantes fácilmente.</li>
+    <li><strong>📝 Evaluaciones personalizadas</strong>: Define evaluaciones con diferentes pesos para cada asignatura.</li>
+    <li><strong>📊 Informes y Estadísticas</strong>: Análisis de rendimiento y progreso académico.</li>
+    <li><strong>📂 Reportes dinámicos</strong>: Crea reportes en PDF para cada estudiante.</li>
+    <li><strong>✨ Interfaz intuitiva</strong>: Sistema simple y fácil de usar para docentes y estudiantes.</li>
+    <li><strong>🔒 Seguridad y Encriptación</strong>: Protección con datos encriptados.</li>
   </ul>
 
   <img src="./assets/Notarium.png" alt="Notarium Mobile App">
@@ -29,7 +26,7 @@
   <hr>
   
   <!-- Uso -->
-  <h2>✔ Beneficios Clave</h2>
+  <h2>✨ Beneficios Clave</h2>
   <h3>1. Ahorro de Tiempo</h3>
   <p>Procesos automatizados y eficientes.</p>
   <h3>2. Análisis de Datos</h3>
