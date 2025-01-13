@@ -23,8 +23,6 @@
     <li><strong>🔒 Seguridad y Encriptación</strong>: Protección con datos encriptados.</li>
   </ul>
 
-  <img src="./assets/Notarium.png" alt="Notarium Mobile App">
-
   <hr>
   
   <!-- Uso -->
