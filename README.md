@@ -10,6 +10,8 @@
 
   <hr>
 
+  <img src="./assets/Notarium.png" alt="Notarium Mobile App">
+
   <!-- Características principales -->
   <h2>🚀 Características principales</h2>
   <ul>
