@@ -10,10 +10,9 @@
 
   <hr>
 
-  <img src="./assets/Notarium.png" alt="Notarium Mobile App">
-
   <!-- Características principales -->
   <h2>🚀 Características principales</h2>
+  <img src="./assets/Notarium.png" alt="Notarium Mobile App">
   <ul>
     <li><strong>📚 Gestión de estudiantes</strong>: Registra, actualiza y elimina estudiantes fácilmente.</li>
     <li><strong>📝 Evaluaciones personalizadas</strong>: Define evaluaciones con diferentes pesos para cada asignatura.</li>
