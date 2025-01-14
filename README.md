@@ -91,7 +91,7 @@
   <!-- Autor -->
   <h2>👥 Autor</h2>
   <ul>
-    <li><strong>Esteban Pérez:</strong> Desarrollador y creador de Notarium.</li>
+    <li><strong><a href="https://github.com/Estebanespg">Esteban Pérez:</a></strong> Desarrollador y creador de Notarium.</li>
   </ul>
 </body>
 </html>
