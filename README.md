@@ -7,12 +7,12 @@
 <body>
   <h1>Notarium 📔</h1>
   <p><b>Notarium</b> es un sistema de gestión de notas académicas diseñado para simplificar el seguimiento y análisis del rendimiento estudiantil. Este software permite registrar estudiantes, asignaturas y configurar sus calificaciones, como sus parámetros, notas y porcentajes, permite calcular promedios y generar reportes en PDF detallados.</p>
+  <img src="./assets/Notarium.png" alt="Notarium Mobile App">
 
   <hr>
 
   <!-- Características principales -->
   <h2>🚀 Características principales</h2>
-  <img src="./assets/Notarium.png" alt="Notarium Mobile App">
   <ul>
     <li><strong>📚 Gestión de estudiantes</strong>: Registra, actualiza y elimina estudiantes fácilmente.</li>
     <li><strong>📝 Evaluaciones personalizadas</strong>: Define evaluaciones con diferentes pesos para cada asignatura.</li>
