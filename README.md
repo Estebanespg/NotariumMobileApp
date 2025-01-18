@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-  <h1>Notarium 📔</h1>
+  <h1 align="center"><img src="./assets/ic_notarium_light_black.png" alt="Notarium Mobile App" width="30"> Notarium</h1>
   <p><b>Notarium</b> es un sistema de gestión de notas académicas diseñado para simplificar el seguimiento y análisis del rendimiento estudiantil. Este software permite registrar estudiantes, asignaturas y configurar sus calificaciones, como sus parámetros, notas y porcentajes, permite calcular promedios y generar reportes en PDF detallados.</p>
   <img src="./assets/Notarium.png" alt="Notarium Mobile App">
 
