@@ -89,7 +89,7 @@ FIREBASE_APP_ID=tu-app-id</code></pre>
     <li>
       <p><strong>Generar build:</strong></p>
       <p>En caso de generar un build de la app será necesario añadir las variables de entorno pero esta vez para producción. esto se puede realizar de dos formas, ingresando las variables y valores por medio de la consola o creando las variables dirigiendonos a la pagina web de Expo.</p>
-      <p>Es importante que independientemente de la forma de crear las variables de entorno estas deben llamarse de la misma manera que como vimos anteriormente en el archivo <em>".env"</em>:</p>
+      <p>Es importante que independientemente de la forma de crear las variables de entorno estas deben llamarse de la misma manera que como vimos anteriormente en el archivo <em>".env"</em>.</p>
       <ul>
         <li>
           <p>Por consola:</p>
