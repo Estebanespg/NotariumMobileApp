@@ -57,11 +57,54 @@
       <pre><code>npm install</code></pre>
     </li>
     <li>
+      <p><strong>Configurar variables de entorno:</strong></p>
+        <ul>
+          <li>
+            <p>Duplicar el archivo llamado <em>".env.example"</em></p>
+          </li>
+          <li>
+            <p>Cambia el nombre del archivo duplicado por <em>".env"</em></p>
+          </li>
+          <li>
+            <p>Pega la configuración de tu app de Firebase en el archivo <em>".env"</em> sin cambiar el nombre de las variables, por ejemplo:</p>
+            <pre><code>
+FIREBASE_API_KEY=tu-api-key
+FIREBASE_AUTH_DOMAIN=tu-auth-domain
+FIREBASE_PROJECT_ID=tu-project-id
+FIREBASE_STORAGE_BUCKET=tu-storage-bucket
+FIREBASE_MESSAGING_SENDER_ID=tu-messaging-sender-id
+FIREBASE_APP_ID=tu-app-id</code></pre>
+          </li>
+        </ul>
+      <br>
+    </li>
+    <li>
       <p><strong>Ejecutar el proyecto:</strong></p>
       <pre><code>npm start</code></pre>
     </li>
     <li>
       <p><strong>Escanea el código QR y pruébala con Expo Go</strong></p>
+      <br>
+    </li>
+    <li>
+      <p><strong>Generar build:</strong></p>
+      <p>En caso de generar un build de la app será necesario añadir las variables de entorno pero esta vez para producción. esto se puede realizar de dos formas, ingresando las variables y valores por medio de la consola o creando las variables dirigiendonos a la pagina web de Expo.</p>
+      <p>Es importante que independientemente de la forma de crear las variables de entorno estas deben llamarse de la misma manera que como vimos anteriormente en el archivo <em>".env"</em>:</p>
+      <ul>
+        <li>
+          <p>Por consola:</p>
+          <pre><code>eas secret:create</code></pre>
+        </li>
+        <li>
+          <p>Por página web:</p>
+          <p>Para ello debes tener una cuenta de Expo y dirigirte al siguiente enlace: <em>https://expo.dev/accounts/TU-USUARIO/projects/TU-PROYECTO/environment-variables</em>.</p>
+          <p>Ten en cuenta cambiar "TU-USUARIO" y "TU-PROYECTO" en el enlace por tu información correspondiente.</p>
+        </li>
+        <br>
+      </ul>
+      <p>Luego de configurar las variables de entorno ingresa el siguiente código en la consola para hacer build:</p>
+      <pre><code>eas build -p android --profile preview</code></pre>
+      <p>Finalmente podrás ver el build en la página de Expo.</p>
     </li>
   </ol>
 
