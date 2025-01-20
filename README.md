@@ -67,8 +67,7 @@
           </li>
           <li>
             <p>Pega la configuración de tu app de Firebase en el archivo <em>".env"</em> sin cambiar el nombre de las variables, por ejemplo:</p>
-            <pre><code>
-FIREBASE_API_KEY=tu-api-key
+            <pre><code>FIREBASE_API_KEY=tu-api-key
 FIREBASE_AUTH_DOMAIN=tu-auth-domain
 FIREBASE_PROJECT_ID=tu-project-id
 FIREBASE_STORAGE_BUCKET=tu-storage-bucket
