@@ -75,7 +75,6 @@ FIREBASE_MESSAGING_SENDER_ID=tu-messaging-sender-id
 FIREBASE_APP_ID=tu-app-id</code></pre>
           </li>
         </ul>
-      <br>
     </li>
     <li>
       <p><strong>Ejecutar el proyecto:</strong></p>
@@ -83,7 +82,6 @@ FIREBASE_APP_ID=tu-app-id</code></pre>
     </li>
     <li>
       <p><strong>Escanea el código QR y pruébala con Expo Go</strong></p>
-      <br>
     </li>
     <li>
       <p><strong>Generar build:</strong></p>
@@ -99,7 +97,6 @@ FIREBASE_APP_ID=tu-app-id</code></pre>
           <p>Para ello debes tener una cuenta de Expo y dirigirte al siguiente enlace: <em>https://expo.dev/accounts/TU-USUARIO/projects/TU-PROYECTO/environment-variables</em>.</p>
           <p>Ten en cuenta cambiar "TU-USUARIO" y "TU-PROYECTO" en el enlace por tu información correspondiente.</p>
         </li>
-        <br>
       </ul>
       <p>Luego de configurar las variables de entorno ingresa el siguiente código en la consola para hacer build:</p>
       <pre><code>eas build -p android --profile preview</code></pre>
